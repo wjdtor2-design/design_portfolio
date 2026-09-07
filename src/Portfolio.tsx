@@ -97,8 +97,8 @@ const works = [
     rotate: -7,
   },
   {
-    title: '반응형 캔버스와 협업 가이드',
-    body: '1920px(메인 컨테이너 1280px) 기준 Auto Layout을 적용하고 Figma 디자인 핸드오프 문서를 공유했습니다.',
+    title: '반응형 캔버스 및 Figma 핸드오프',
+    body: '1920px(메인 컨테이너 1280px) 기준 Auto Layout을 적용하고 개발 협업 가이드와 Figma 디자인 핸드오프 문서를 공유했습니다.',
     rotate: 3,
   },
 ]
