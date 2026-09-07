@@ -18,8 +18,8 @@ const NAME = '곽지은 / Gwak Ji Eun'
 const ROLE = 'UI/UX DESIGNER'
 const HEADLINE = 'DESIGN SHAPED AROUND YOUR NEEDS'
 const TAGLINE = ['— 화면만 그리지 않습니다.', '쓰는 사람이 헤매지 않는', '흐름을 설계합니다']
-const FOOTER_HEADLINE = ["LET'S BUILD", 'SOMETHING', 'MEMORABLE']
-const FOOTER_NOTE = ['— Have an idea?', "Let's turn it into a sharp digital", 'experience.']
+const FOOTER_HEADLINE = ['I DESIGN THINGS', 'THAT FIT RIGHT IN']
+const FOOTER_NOTE = ['저는 사용자 니즈에 맞춰', '잘 스며들게 디자인합니다.']
 const PROFILE_IMAGE = '/profile.jpg'
 const PROJECT_VIDEO = '/plan-with.mp4'
 const BACKDROP = '/hills.jpg'
@@ -641,7 +641,7 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
     <section
       id="about"
-      className="relative flex min-h-[92svh] scroll-mt-4 items-center px-5 py-20 sm:px-10 lg:px-16"
+      className="relative flex min-h-[92svh] scroll-mt-4 items-start px-5 pb-16 pt-10 sm:px-10 sm:pt-12 lg:px-16"
     >
       <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative">
@@ -649,7 +649,7 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
             label="About"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="mb-4 flex"
+            className="mb-3 flex"
             rotate={-12}
             scale={0.95}
           />
@@ -701,8 +701,8 @@ function Projects({
             label="Projects"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-[calc(50%-232px)] top-[-14px] hidden sm:flex"
-            rotate={-19}
+            className="absolute left-[calc(50%+88px)] top-[-22px] hidden sm:flex"
+            rotate={12}
             scale={0.95}
           />
           <h2 className="text-[38px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] text-[#1f1f1f] sm:text-[58px]">
@@ -872,8 +872,8 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
               label="Stack"
               chip="bg-[#e5f2fa]"
               accent="#039cfb"
-              className="absolute -left-32 -top-4 hidden lg:flex"
-              rotate={-19}
+              className="absolute left-[calc(50%-58px)] -top-14 flex"
+              rotate={-8}
               scale={0.95}
             />
             <h2 className="text-[38px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] sm:text-[58px]">
@@ -943,17 +943,8 @@ function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
         />
         <div className="absolute inset-0 bg-black/12" />
 
-        <div className="relative flex min-h-[440px] flex-col justify-between p-6 sm:p-9 lg:min-h-[520px]">
-          <div className="flex justify-end">
-            <div className="max-w-[280px] text-right text-[16px] font-semibold leading-[1.35] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-[18px]">
-              {FOOTER_NOTE.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-20">
-            <div className="relative inline-block">
+        <div className="relative flex min-h-[440px] flex-col justify-end p-6 sm:p-9 lg:min-h-[520px]">
+          <div className="relative inline-block max-w-[18ch]">
               <Chip
                 label="UI/UX Design"
                 chip="bg-[#f4eaf5]"
@@ -969,16 +960,18 @@ function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
                   </span>
                 ))}
               </h2>
+              <p className="mt-4 max-w-[28ch] text-[16px] font-medium leading-[1.45] text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-[18px]">
+                {FOOTER_NOTE.join(' ')}
+              </p>
               <Chip
                 label="Figma"
                 chip="bg-[#f4f8e8]"
                 accent="#93ba06"
-                className="absolute -bottom-5 right-[-18px] hidden sm:flex"
+                className="absolute right-[-28px] top-[38%] hidden sm:flex"
                 rotate={-4}
                 scale={0.85}
               />
             </div>
-          </div>
         </div>
       </div>
 
