@@ -642,19 +642,21 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
     <section
       id="about"
-      className="relative flex min-h-[92svh] scroll-mt-4 items-center px-5 py-20 sm:px-10 lg:px-16"
+      className="relative flex min-h-[92svh] scroll-mt-4 items-center overflow-visible px-5 py-20 pb-32 sm:px-10 lg:px-16"
     >
       <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative">
-          <Chip
-            label="About"
-            chip="bg-[#e5f2fa]"
-            accent="#039cfb"
-            className="mb-3 flex"
-            rotate={-12}
-            scale={0.95}
-          />
-          <h2 className="text-[44px] font-extrabold uppercase leading-[0.9] tracking-[-0.03em] sm:text-[68px] lg:text-[86px]">
+          <div className="mb-6">
+            <Chip
+              label="About"
+              chip="bg-[#e5f2fa]"
+              accent="#039cfb"
+              className="origin-bottom-left"
+              rotate={-12}
+              scale={0.95}
+            />
+          </div>
+          <h2 className="relative z-10 text-[44px] font-extrabold uppercase leading-[0.9] tracking-[-0.03em] sm:text-[68px] lg:text-[86px]">
             자기소개
           </h2>
           <p className="mt-7 max-w-xl text-[16px] font-medium leading-[1.75] tracking-[-0.01em] text-[#00252e]/85 sm:text-[18px]">
@@ -662,7 +664,7 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-6">
+        <div className="relative z-10 grid grid-cols-2 gap-5 sm:gap-7">
           {stats.map((item) => (
             <TiltCard key={item.title} rotate={item.rotate} hoverHandlers={hoverHandlers}>
               <div className="relative h-full rounded-xl border border-black/10 bg-white p-4 shadow-[24px_12px_0_rgba(0,0,0,0.1)] sm:p-5">
@@ -1090,7 +1092,7 @@ function Chip({
 }) {
   return (
     <motion.div
-      className={`pointer-events-none items-center ${className}`}
+      className={`pointer-events-none inline-flex w-fit items-center ${className}`}
       style={{ rotate, scale }}
     >
       <div className={`relative rounded-[7px] px-3 py-1.5 shadow-[0_0_10px_rgba(0,0,0,0.04)] ${chip}`}>
