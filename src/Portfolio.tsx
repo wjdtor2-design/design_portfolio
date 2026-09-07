@@ -6,11 +6,9 @@ import {
   useTransform,
 } from 'framer-motion'
 import {
-  useCallback,
   useEffect,
   useMemo,
   useState,
-  type MouseEvent,
   type ReactNode,
 } from 'react'
 
@@ -158,12 +156,10 @@ const dockItems = [
 export default function Portfolio() {
   const [hovering, setHovering] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(0)
-  const [isFinePointer] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches,
-  )
+  const [showCursor, setShowCursor] = useState(false)
 
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
+  const mouseX = useMotionValue(-100)
+  const mouseY = useMotionValue(-100)
   const cursorX = useSpring(mouseX, { stiffness: 500, damping: 35, mass: 0.4 })
   const cursorY = useSpring(mouseY, { stiffness: 500, damping: 35, mass: 0.4 })
   const glowX = useSpring(mouseX, { stiffness: 120, damping: 22, mass: 0.8 })
@@ -177,22 +173,25 @@ export default function Portfolio() {
   const gridY = useTransform(parallaxY, (v) => v * 0.7)
 
   useEffect(() => {
-    if (!isFinePointer) return
-    document.body.classList.add('custom-cursor')
-    return () => document.body.classList.remove('custom-cursor')
-  }, [isFinePointer])
-
-  const onMove = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
+    const onPointerMove = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') return
+      setShowCursor(true)
       mouseX.set(e.clientX)
       mouseY.set(e.clientY)
       const nx = (e.clientX / window.innerWidth - 0.5) * -36
       const ny = (e.clientY / window.innerHeight - 0.5) * -36
       parallaxX.set(nx)
       parallaxY.set(ny)
-    },
-    [mouseX, mouseY, parallaxX, parallaxY],
-  )
+    }
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+    return () => window.removeEventListener('pointermove', onPointerMove)
+  }, [mouseX, mouseY, parallaxX, parallaxY])
+
+  useEffect(() => {
+    if (!showCursor) return
+    document.documentElement.classList.add('custom-cursor')
+    return () => document.documentElement.classList.remove('custom-cursor')
+  }, [showCursor])
 
   const hoverHandlers = useMemo(
     () => ({
@@ -203,10 +202,8 @@ export default function Portfolio() {
   )
 
   return (
-    <div
-      className="relative min-h-svh overflow-x-hidden bg-[#f3efe6] text-[#00252e] antialiased"
-      onMouseMove={onMove}
-    >
+    <>
+    <div className="relative min-h-svh overflow-x-hidden bg-[#f3efe6] text-[#00252e] antialiased">
       <motion.div
         className="pointer-events-none fixed inset-[-8%] z-0"
         style={{ x: gridX, y: gridY }}
@@ -254,32 +251,30 @@ export default function Portfolio() {
       </div>
 
       <Dock hoverHandlers={hoverHandlers} />
-
-      {isFinePointer && (
-        <>
+    </div>
+      {showCursor && (
+        <div className="pointer-events-none fixed inset-0 z-[200] hidden sm:block">
           <motion.div
-            className="pointer-events-none fixed top-0 left-0 z-[80] h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c7fb03]/35 blur-2xl mix-blend-multiply"
-            style={{ x: glowX, y: glowY }}
-            animate={{ scale: hovering ? 1.55 : 1, opacity: hovering ? 0.9 : 0.55 }}
+            className="absolute h-14 w-14 rounded-full bg-[#c7fb03]/50 blur-xl"
+            style={{ left: glowX, top: glowY, x: '-50%', y: '-50%' }}
+            animate={{ scale: hovering ? 1.7 : 1, opacity: hovering ? 1 : 0.7 }}
             transition={{ type: 'spring', stiffness: 240, damping: 22 }}
           />
           <motion.div
-            className="pointer-events-none fixed top-0 left-0 z-[90] h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00252e] mix-blend-difference"
-            style={{ x: cursorX, y: cursorY }}
-            animate={{
-              scale: hovering ? 2.4 : 1,
-              backgroundColor: hovering ? '#c7fb03' : '#00252e',
-            }}
-            transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+            className="absolute h-8 w-8 rounded-full border-2 border-[#00252e]/30 bg-white/20"
+            style={{ left: glowX, top: glowY, x: '-50%', y: '-50%' }}
+            animate={{ scale: hovering ? 1.45 : 1 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           />
           <motion.div
-            className="pointer-events-none fixed top-0 left-0 z-[90] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#00252e]/40"
-            style={{ x: glowX, y: glowY }}
-            animate={{ scale: hovering ? 1.35 : 1, opacity: hovering ? 0.35 : 0.7 }}
+            className="absolute h-2.5 w-2.5 rounded-full bg-[#00252e] shadow-[0_0_0_2px_#c7fb03]"
+            style={{ left: cursorX, top: cursorY, x: '-50%', y: '-50%' }}
+            animate={{ scale: hovering ? 2.2 : 1 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 22 }}
           />
-        </>
+        </div>
       )}
-    </div>
+    </>
   )
 }
 

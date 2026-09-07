@@ -17,23 +17,9 @@ body {
   overflow-x: hidden;
 }
 
-body.custom-cursor {
-  cursor: none;
-}
-
-body.custom-cursor a,
-body.custom-cursor button,
-body.custom-cursor [data-hoverable] {
-  cursor: none;
-}
-
-@media (pointer: coarse) {
-  body.custom-cursor,
-  body.custom-cursor a,
-  body.custom-cursor button,
-  body.custom-cursor [data-hoverable] {
-    cursor: auto;
-  }
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
 }
 
 #root {
