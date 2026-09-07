@@ -622,15 +622,17 @@ function CaseStudy({
                 </li>
               ))}
             </ol>
-            <button
-              type="button"
-              data-hoverable
-              onClick={onClose}
-              className="mt-8 inline-flex rounded-lg bg-[#00252e] px-5 py-2.5 text-[15px] font-medium text-white"
-              {...hoverHandlers}
-            >
-              닫기
-            </button>
+            <div className="mt-8 flex justify-end">
+              <button
+                type="button"
+                data-hoverable
+                onClick={onClose}
+                className="inline-flex rounded-lg bg-[#00252e] px-5 py-2.5 text-[15px] font-medium text-white"
+                {...hoverHandlers}
+              >
+                닫기
+              </button>
+            </div>
           </section>
         </div>
       </motion.article>
