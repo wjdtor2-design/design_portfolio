@@ -23,7 +23,7 @@ const FOOTER_NOTE_EN = 'I DESIGN THINGS THAT FIT RIGHT IN'
 const FOOTER_NOTE_KO = '저는 사용자 니즈에 맞춰 잘 스며들게 디자인합니다.'
 const PROFILE_IMAGE = '/profile.jpg'
 const PROJECT_VIDEO = '/plan-with.mp4'
-const BACKDROP = '/hills.jpg'
+const BACKDROP = '/hills.jpg?v=2'
 const SHOT_MAIN = '/plan-with-main.jpg'
 const SHOT_AI = '/plan-with-ai.jpg'
 const SHOTS = [
@@ -642,7 +642,7 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
     <section
       id="about"
-      className="relative flex min-h-[92svh] scroll-mt-4 items-start px-5 pb-16 pt-10 sm:px-10 sm:pt-12 lg:px-16"
+      className="relative flex min-h-[92svh] scroll-mt-4 items-center px-5 py-20 sm:px-10 lg:px-16"
     >
       <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative">
@@ -697,12 +697,12 @@ function Projects({
       className="relative flex min-h-[92svh] scroll-mt-4 flex-col justify-center px-4 py-20"
     >
       <div className="relative mx-auto w-full max-w-6xl">
-        <div className="relative mb-14 text-center">
+        <div className="relative mb-14 pt-14 text-center">
           <Chip
             label="Projects"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-[calc(50%+88px)] top-[-22px] hidden sm:flex"
+            className="absolute left-[calc(50%+72px)] top-0 hidden sm:flex"
             rotate={12}
             scale={0.95}
           />
