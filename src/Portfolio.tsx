@@ -1,4 +1,5 @@
 import {
+  AnimatePresence,
   motion,
   useMotionValue,
   useSpring,
@@ -12,12 +13,17 @@ import {
   type ReactNode,
 } from 'react'
 
-const LOGO = '내 이름'
-const NAME = '내 이름 / 영문이름'
+const LOGO = 'Gwak Ji Eun'
+const NAME = '곽지은 / Gwak Ji Eun'
 const ROLE = 'UI/UX 디자이너'
 const HEADLINE = 'DESIGN SHAPED AROUND YOUR NEEDS'
+const TAGLINE = ['— 화면만 그리지 않습니다.', '쓰는 사람이 헤매지 않는', '흐름을 설계합니다']
+const PROFILE_IMAGE = '/profile.jpg'
 const PROJECT_VIDEO = '/plan-with.mp4'
+const PROJECT_LINK = 'https://github.com/'
 const BACKDROP = '/hills.jpg'
+const SHOT_MAIN = '/plan-with-main.jpg'
+const SHOT_AI = '/plan-with-ai.jpg'
 
 const INTRO =
   '치과 10년 근무 후 IT 기술에 도전하고자 입문한 부트캠프에서, 설계한 결과물이 시각적으로 즉시 구현되는 UI/UX 디자인에 큰 매력을 느꼈습니다. 독학으로 기본기를 다진 후 실무 아카데미 프로젝트에서 UI/UX를 전담하며 복잡한 입력 동선을 개편하고 컴포넌트 시스템을 구축했습니다. 현장에서 익힌 세심함과 주도적인 배움의 태도로, 유저와 팀 모두가 만족하는 화면을 설계하겠습니다.'
@@ -51,32 +57,46 @@ const stats = [
 
 const stacks = [
   {
-    group: 'Design Tool',
     title: 'Figma',
-    detail: 'Auto Layout, Component, Prototyping',
-    bg: 'bg-[#d9e7f5]',
-    icon: 'bg-[#4a96ed]',
+    detail: '화면 설계부터 핸드오프까지 전 과정을 Figma 한 파일에서 진행합니다.',
+    bg: 'bg-[#f9d4da]',
+    pos: 'left-[6%] top-[14%]',
+    rotate: -2,
   },
   {
-    group: 'Collaboration',
-    title: 'Git',
-    detail: '버전 관리와 변경 이력',
-    bg: 'bg-[#f3eebc]',
-    icon: 'bg-[#e8d210]',
+    title: 'Auto Layout',
+    detail: '1920px 캔버스, 1280px 메인 컨테이너 기준 반응형 규칙을 세웁니다.',
+    bg: 'bg-[#d5ef43]',
+    pos: 'right-[8%] top-[12%]',
+    rotate: 2,
   },
   {
-    group: 'Collaboration',
-    title: 'GitHub',
-    detail: '저장소 협업과 핸드오프',
-    bg: 'bg-[#dcf5e0]',
-    icon: 'bg-[#52de85]',
+    title: 'Component & Variants',
+    detail: '아바타와 카드를 XS~XL 5단계로 표준화해 재사용 가능한 세트로 묶습니다.',
+    bg: 'bg-[#c6dcf6]',
+    pos: 'left-[3%] top-[44%]',
+    rotate: 1,
   },
   {
-    group: 'Collaboration',
+    title: 'Prototyping',
+    detail: 'Step UI 흐름을 프로토타입으로 검증한 뒤 화면을 확정합니다.',
+    bg: 'bg-[#fae59a]',
+    pos: 'right-[4%] top-[48%]',
+    rotate: -1,
+  },
+  {
+    title: 'Git & GitHub',
+    detail: '브랜치와 커밋 이력으로 팀 작업물의 변경 과정을 따라갑니다.',
+    bg: 'bg-[#c8eed4]',
+    pos: 'left-[24%] top-[74%]',
+    rotate: -2,
+  },
+  {
     title: 'Notion',
-    detail: '문서화와 팀 공유',
-    bg: 'bg-[#ebe6f3]',
-    icon: 'bg-[#8168fd]',
+    detail: '디자인 결정과 핸드오프 가이드를 문서로 남겨 팀에 공유합니다.',
+    bg: 'bg-[#e2d9f7]',
+    pos: 'right-[22%] top-[78%]',
+    rotate: 2,
   },
 ]
 
@@ -84,27 +104,46 @@ const works = [
   {
     title: '메인 페이지 레이아웃 및 시인성 개편',
     body: '주요 일정 카드의 크기를 확장하고 핵심 영역(캘린더·추천 루트) 배치를 조정하여 탐색 용이성을 높였습니다.',
-    rotate: 6,
   },
   {
     title: 'Step UI 전환으로 입력 피로도 개선',
     body: '한 화면에 모여 있던 AI 일정 입력 폼을 단계별 대화형 UI로 개편해 작성 부담을 낮췄습니다.',
-    rotate: -4,
   },
   {
     title: '8px 그리드 기반 디자인 시스템',
     body: '파편화되어 있던 프로필 아바타와 카드 요소를 XS~XL 5가지 표준 규격으로 정돈해 시각적 통일성을 확보했습니다.',
-    rotate: 5,
   },
   {
     title: '상세·마이페이지 레이아웃 정돈',
     body: '답답한 박스 테두리를 정리하고 폰트 스케일을 체계화하여 정보 전달력을 개선했습니다.',
-    rotate: -7,
   },
   {
     title: '반응형 캔버스 및 Figma 핸드오프',
     body: '1920px(메인 컨테이너 1280px) 기준 Auto Layout을 적용하고 개발 협업 가이드와 Figma 디자인 핸드오프 문서를 공유했습니다.',
-    rotate: 3,
+  },
+]
+
+const caseCards = [
+  {
+    anchor: 'case-overview',
+    title: 'PLAN & WITH',
+    tool: 'FIGMA',
+    year: '2026',
+    tint: 'bg-[#f4e7a1]/55',
+  },
+  {
+    anchor: 'case-ai',
+    title: 'AI 일정 STEP UI',
+    tool: 'FIGMA',
+    year: '2026',
+    tint: 'bg-[#cfe6c2]/55',
+  },
+  {
+    anchor: 'case-works',
+    title: '디자인 시스템',
+    tool: 'FIGMA',
+    year: '2026',
+    tint: 'bg-[#2c3230]/55',
   },
 ]
 
@@ -118,6 +157,7 @@ const dockItems = [
 export default function Portfolio() {
   const [hovering, setHovering] = useState(false)
   const [showCursor, setShowCursor] = useState(false)
+  const [caseAnchor, setCaseAnchor] = useState<string | null>(null)
 
   const mouseX = useMotionValue(-100)
   const mouseY = useMotionValue(-100)
@@ -198,14 +238,24 @@ export default function Portfolio() {
       </motion.div>
 
       <div className="relative z-[2]">
-        <Hero hoverHandlers={hoverHandlers} />
+        <Hero hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
         <About hoverHandlers={hoverHandlers} />
         <Stack hoverHandlers={hoverHandlers} />
-        <Projects hoverHandlers={hoverHandlers} />
+        <Projects hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
         <Footer hoverHandlers={hoverHandlers} />
       </div>
 
       <Dock hoverHandlers={hoverHandlers} />
+
+      <AnimatePresence>
+        {caseAnchor && (
+          <CaseStudy
+            anchor={caseAnchor}
+            hoverHandlers={hoverHandlers}
+            onClose={() => setCaseAnchor(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
       {showCursor && (
         <div className="pointer-events-none fixed inset-0 z-[200] hidden sm:block">
@@ -238,7 +288,13 @@ type Hover = {
   onMouseLeave: () => void
 }
 
-function Hero({ hoverHandlers }: { hoverHandlers: Hover }) {
+function Hero({
+  hoverHandlers,
+  onOpenCase,
+}: {
+  hoverHandlers: Hover
+  onOpenCase: (anchor: string) => void
+}) {
   return (
     <section
       id="hero"
@@ -250,67 +306,334 @@ function Hero({ hoverHandlers }: { hoverHandlers: Hover }) {
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20" />
-      <div className="relative flex min-h-[78vh] flex-col px-5 pb-16 pt-6 sm:px-10 sm:pt-8 lg:min-h-[86vh]">
-        <header className="flex items-center justify-between">
-          <a
-            href="#hero"
-            className="text-[26px] font-semibold tracking-[-0.03em] text-[#00252e] drop-shadow-[0_1px_6px_rgba(255,255,255,0.7)] sm:text-[30px]"
-            {...hoverHandlers}
-          >
-            {LOGO}
-          </a>
-        </header>
-
-        <div className="flex flex-1 flex-col items-center justify-center gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-3 rounded-2xl border-2 border-white/50 bg-white/35 px-3 py-2 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.7)] backdrop-blur-[50px]"
-            {...hoverHandlers}
-          >
-            <div className="h-9 w-9 overflow-hidden rounded-full bg-[#c7fb03] text-center text-sm font-bold leading-9 text-[#00252e]">
-              {LOGO.slice(0, 1)}
+      <div className="relative flex min-h-[78vh] flex-col px-5 pb-10 pt-5 sm:px-8 sm:pt-6 lg:min-h-[88vh]">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex w-fit items-center gap-3 rounded-2xl border border-white/50 bg-white/25 px-3 py-2.5 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.7)] backdrop-blur-[40px]"
+          {...hoverHandlers}
+        >
+          <ProfileAvatar />
+          <div>
+            <div className="flex items-center gap-1.5">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#34c75a] opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#34c75a]" />
+              </span>
+              <span className="text-[12px] tracking-[-0.01em] text-[#00252e]/75">
+                Available for work
+              </span>
             </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#34c75a] opacity-70" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#34c75a]" />
-                </span>
-                <span className="text-[13px] font-medium tracking-[-0.03em] text-[#00252e]">
-                  Open to opportunities
-                </span>
-              </div>
-              <p className="mt-1 text-[14px] font-medium tracking-[-0.03em] text-[#00252e]">
-                {NAME} — {ROLE}
-              </p>
-            </div>
-          </motion.div>
+            <p className="mt-0.5 text-[15px] font-semibold uppercase tracking-[0.01em] text-[#00252e]">
+              {LOGO} — {ROLE}
+            </p>
+          </div>
+        </motion.div>
 
-          <div className="relative px-4 text-center">
-            <Chip
-              label="Figma"
-              chip="bg-[#f4eaf5]"
-              accent="#ec68fd"
-              className="absolute -left-2 top-[-18px] hidden sm:flex md:-left-16"
-              rotate={10}
-              scale={0.72}
-            />
-            <h1 className="max-w-[16ch] text-center text-[32px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-[#00252e] drop-shadow-[0_2px_12px_rgba(255,255,255,0.6)] sm:text-[52px] lg:text-[68px]">
-              {HEADLINE}
-            </h1>
+        <div className="flex flex-1 items-center justify-center py-10">
+          <div className="relative">
             <Chip
               label="UI/UX Design"
               chip="bg-[#f4f8e8]"
               accent="#93ba06"
-              className="absolute -right-2 bottom-[-22px] hidden sm:flex md:-right-24"
-              rotate={10}
-              scale={0.72}
+              className="absolute -top-10 right-0 hidden sm:flex lg:-right-16"
+              rotate={8}
+              scale={0.78}
+            />
+            <h1 className="max-w-[13ch] text-[38px] font-extrabold uppercase leading-[0.92] tracking-[-0.02em] text-[#151515] drop-shadow-[0_2px_14px_rgba(255,255,255,0.5)] sm:text-[62px] lg:text-[80px]">
+              {HEADLINE}
+            </h1>
+            <Chip
+              label="Figma"
+              chip="bg-[#f4eaf5]"
+              accent="#ec68fd"
+              className="absolute bottom-[24%] left-[-6%] hidden sm:flex"
+              rotate={-8}
+              scale={0.78}
             />
           </div>
         </div>
+
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+          <div className="text-[17px] font-medium leading-[1.35] tracking-[-0.01em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] sm:text-right sm:text-[19px]">
+            {TAGLINE.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
+          <CaseStack hoverHandlers={hoverHandlers} onOpenCase={onOpenCase} />
+        </div>
       </div>
     </section>
+  )
+}
+
+function ProfileAvatar() {
+  const [broken, setBroken] = useState(false)
+
+  if (broken) {
+    return (
+      <div className="grid h-11 w-11 place-items-center rounded-full bg-[#c7fb03] text-[16px] font-bold text-[#00252e]">
+        곽
+      </div>
+    )
+  }
+
+  return (
+    <img
+      src={PROFILE_IMAGE}
+      alt={NAME}
+      onError={() => setBroken(true)}
+      className="h-11 w-11 rounded-full object-cover"
+    />
+  )
+}
+
+function CaseStack({
+  hoverHandlers,
+  onOpenCase,
+}: {
+  hoverHandlers: Hover
+  onOpenCase: (anchor: string) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const gap = 62
+
+  return (
+    <div
+      className="relative h-[176px] w-full sm:w-[320px]"
+      onMouseEnter={() => {
+        setOpen(true)
+        hoverHandlers.onMouseEnter()
+      }}
+      onMouseLeave={() => {
+        setOpen(false)
+        hoverHandlers.onMouseLeave()
+      }}
+    >
+      {caseCards.map((card, i) => {
+        const depth = caseCards.length - 1 - i
+        return (
+          <motion.button
+            key={card.anchor}
+            type="button"
+            data-hoverable
+            onClick={() => onOpenCase(card.anchor)}
+            className={`absolute bottom-0 left-0 w-full origin-bottom rounded-xl border border-white/45 px-3.5 py-3 text-left shadow-[0_6px_18px_rgba(0,0,0,0.18)] backdrop-blur-[24px] ${card.tint}`}
+            style={{ zIndex: caseCards.length - depth }}
+            animate={{
+              y: open ? -depth * gap : -depth * 9,
+              scale: open ? 1 : 1 - depth * 0.035,
+              opacity: open ? 1 : depth > 1 ? 0.55 : 1,
+            }}
+            whileHover={{ scale: 1.035 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+          >
+            <div className="flex items-center gap-3">
+              <img
+                src={i === 1 ? SHOT_AI : SHOT_MAIN}
+                alt=""
+                className="h-10 w-14 shrink-0 rounded-md object-cover"
+              />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-semibold tracking-[0.06em] text-[#00252e]/55">
+                    {card.tool}
+                  </span>
+                  <span className="text-[11px] text-[#00252e]/55">{card.year}</span>
+                </div>
+                <p className="truncate text-[15px] font-bold uppercase tracking-[-0.01em] text-[#00252e]">
+                  {card.title}
+                </p>
+                <div className="mt-0.5 flex items-center justify-between gap-2">
+                  <span className="text-[11px] font-medium tracking-[0.04em] text-[#00252e]/60">
+                    VIEW CASE STUDY
+                  </span>
+                  <span className="text-[13px] text-[#00252e]/60">→</span>
+                </div>
+              </div>
+            </div>
+          </motion.button>
+        )
+      })}
+    </div>
+  )
+}
+
+function CaseStudy({
+  anchor,
+  hoverHandlers,
+  onClose,
+}: {
+  anchor: string
+  hoverHandlers: Hover
+  onClose: () => void
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  useEffect(() => {
+    const target = scrollRef.current?.querySelector(`#${anchor}`)
+    if (!target) return
+    const timer = window.setTimeout(
+      () => target.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+      420,
+    )
+    return () => window.clearTimeout(timer)
+  }, [anchor])
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div
+        className="absolute inset-0 bg-[#00252e]/45 backdrop-blur-sm"
+        onClick={onClose}
+        {...hoverHandlers}
+      />
+      <motion.article
+        className="relative flex max-h-full w-full max-w-[880px] flex-col overflow-hidden rounded-[18px] bg-[#2b2b2b] p-1.5 shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+        initial={{ opacity: 0, y: 40, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 30, scale: 0.97 }}
+        transition={{ type: 'spring', stiffness: 210, damping: 26 }}
+      >
+        <div className="flex items-center gap-3 px-3 py-2.5">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="닫기"
+              data-hoverable
+              onClick={onClose}
+              className="h-3 w-3 rounded-full bg-[#fd5d5c]"
+              {...hoverHandlers}
+            />
+            <span className="h-3 w-3 rounded-full bg-[#fac900]" />
+            <span className="h-3 w-3 rounded-full bg-[#34c75a]" />
+          </div>
+          <div className="flex flex-1 items-center gap-2 rounded-lg bg-[#3d3d3d] px-3 py-1.5">
+            <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 shrink-0" aria-hidden>
+              <circle cx="7" cy="7" r="4.6" fill="none" stroke="#9b9b9b" strokeWidth="1.6" />
+              <path d="M10.6 10.6 L14 14" stroke="#9b9b9b" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+            <span className="text-[13px] text-white/70">Portfolio / Case Study</span>
+          </div>
+          <span className="text-[15px] text-white/50">⟳</span>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="overflow-y-auto rounded-[13px] bg-white px-5 py-6 sm:px-8 sm:py-8"
+        >
+          <section id="case-overview" className="scroll-mt-4">
+            <img
+              src={SHOT_MAIN}
+              alt="Plan & With 메인 페이지"
+              className="w-full rounded-2xl object-cover"
+            />
+            <div className="mt-6 flex flex-wrap items-start justify-between gap-3">
+              <h2 className="text-[30px] font-extrabold tracking-[-0.02em] sm:text-[38px]">
+                Plan &amp; With
+              </h2>
+              <a
+                href={PROJECT_LINK}
+                target="_blank"
+                rel="noreferrer"
+                data-hoverable
+                className="inline-flex items-center gap-1.5 text-[16px] font-medium text-[#2563eb]"
+                {...hoverHandlers}
+              >
+                Preview Link
+                <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden>
+                  <path
+                    d="M6 3h7v7M13 3L4.5 11.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </a>
+            </div>
+            <p className="mt-3 max-w-[62ch] text-[16px] leading-[1.6] text-[#00252e]/80">
+              AI가 추천한 여행 일정을 만들고 공유하는 웹 서비스입니다. 팀 프로젝트에서 UI/UX를
+              전담해 메인 레이아웃을 개편하고, 복잡했던 일정 입력을 단계형 흐름으로 다시 설계했습니다.
+            </p>
+
+            <dl className="mt-8 grid gap-6 sm:grid-cols-2">
+              {[
+                ['Client :', '실무 아카데미 팀 프로젝트'],
+                ['Years :', '2026'],
+                ['Project Type :', 'UI/UX Design · 반응형 웹'],
+                ['Tool Used :', 'Figma, Notion, Git & GitHub'],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <dt className="text-[15px] text-[#00252e]/50">{label}</dt>
+                  <dd className="mt-1 text-[17px] font-semibold tracking-[-0.01em]">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <section id="case-ai" className="mt-10 scroll-mt-4">
+            <div className="rounded-2xl bg-[#1c1c1c] p-3 sm:p-5">
+              <img
+                src={SHOT_AI}
+                alt="AI 여행 일정 신청서 Step UI"
+                className="w-full rounded-xl object-cover"
+              />
+            </div>
+            <p className="mt-4 text-[16px] leading-[1.6] text-[#00252e]/80">
+              한 화면에 모여 있던 AI 일정 입력 폼을 목적지 → 인원 → 기간 순의 대화형 Step UI로
+              나눠, 한 번에 하나만 답하면 되도록 입력 부담을 줄였습니다.
+            </p>
+          </section>
+
+          <section id="case-works" className="mt-12 scroll-mt-4">
+            <h3 className="text-[22px] font-extrabold tracking-[-0.02em] sm:text-[26px]">
+              주요 수행 내용 및 성과
+            </h3>
+            <ol className="mt-5 divide-y divide-black/8 border-t border-black/8">
+              {works.map((work, i) => (
+                <li key={work.title} className="flex gap-4 py-5">
+                  <span className="mt-0.5 text-[15px] font-semibold text-[#00252e]/35">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <p className="text-[17px] font-bold tracking-[-0.01em]">{work.title}</p>
+                    <p className="mt-1.5 text-[15px] leading-[1.6] text-[#00252e]/70">
+                      {work.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <button
+              type="button"
+              data-hoverable
+              onClick={onClose}
+              className="mt-8 inline-flex rounded-lg bg-[#00252e] px-5 py-2.5 text-[15px] font-medium text-white"
+              {...hoverHandlers}
+            >
+              닫기
+            </button>
+          </section>
+        </div>
+      </motion.article>
+    </motion.div>
   )
 }
 
@@ -369,72 +692,59 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
   )
 }
 
-function Projects({ hoverHandlers }: { hoverHandlers: Hover }) {
+function Projects({
+  hoverHandlers,
+  onOpenCase,
+}: {
+  hoverHandlers: Hover
+  onOpenCase: (anchor: string) => void
+}) {
   return (
-    <section id="project" className="relative mx-3 overflow-hidden rounded-[28px] py-16 sm:mx-5">
-      <img
-        src={BACKDROP}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="relative mx-auto max-w-6xl px-4">
-        <div className="relative mb-14 text-center">
+    <section id="project" className="relative px-4 py-20">
+      <div className="relative mx-auto max-w-6xl">
+        <div className="relative mb-16 text-center">
           <Chip
-            label="Project"
+            label="Projects"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-2 top-[-14px] sm:left-24"
+            className="absolute left-1/2 top-[-16px] -translate-x-[168px]"
             rotate={-19}
             scale={0.65}
           />
-          <h2 className="text-[34px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-[#1f1f1f] drop-shadow-[0_2px_10px_rgba(255,255,255,0.55)] sm:text-[48px]">
+          <h2 className="text-[34px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-[#1f1f1f] sm:text-[48px]">
             PROJECTS THAT
             <br />
             TELL STORIES
           </h2>
         </div>
 
-        <div className="mx-auto max-w-3xl">
-          <ProjectWindow hoverHandlers={hoverHandlers} />
+        <div className="mx-auto max-w-2xl">
+          <ProjectWindow hoverHandlers={hoverHandlers} onOpenCase={onOpenCase} />
         </div>
 
-        <p className="mb-6 mt-16 text-center text-[15px] font-semibold tracking-[-0.03em] text-[#1f1f1f] drop-shadow-[0_1px_6px_rgba(255,255,255,0.6)]">
-          주요 수행 내용 및 성과
+        <p className="mt-12 text-center text-[15px] text-[#00252e]/55">
+          카드를 누르면 케이스 스터디가 열립니다
         </p>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {works.map((work) => (
-            <TiltCard key={work.title} rotate={work.rotate} hoverHandlers={hoverHandlers}>
-              <article className="relative h-full rounded-xl border border-black/10 bg-white p-5 shadow-[16px_10px_0_rgba(0,0,0,0.1)]">
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2">
-                  <Pin />
-                </div>
-                <FoldCorner />
-                <h4 className="pr-8 pt-2 text-[17px] font-bold leading-snug tracking-[-0.03em]">
-                  {work.title}
-                </h4>
-                <p className="mt-2 text-[14px] font-medium leading-[150%] text-black/60">
-                  {work.body}
-                </p>
-              </article>
-            </TiltCard>
-          ))}
-        </div>
       </div>
     </section>
   )
 }
 
-function ProjectWindow({ hoverHandlers }: { hoverHandlers: Hover }) {
+function ProjectWindow({
+  hoverHandlers,
+  onOpenCase,
+}: {
+  hoverHandlers: Hover
+  onOpenCase: (anchor: string) => void
+}) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [hasVideo, setHasVideo] = useState(true)
   const [playing, setPlaying] = useState(false)
 
   const play = () => {
     hoverHandlers.onMouseEnter()
-    videoRef.current
-      ?.play()
-      .then(() => setPlaying(true))
-      .catch(() => setHasVideo(false))
+    setPlaying(true)
+    videoRef.current?.play().catch(() => setHasVideo(false))
   }
 
   const stop = () => {
@@ -449,7 +759,13 @@ function ProjectWindow({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
     <motion.article
       data-hoverable
-      className="relative rounded-[18px] border-[1.5px] border-white bg-white/40 p-2 shadow-[0_3px_20px_rgba(0,0,0,0.18)] backdrop-blur-[8px]"
+      role="button"
+      tabIndex={0}
+      onClick={() => onOpenCase('case-overview')}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onOpenCase('case-overview')
+      }}
+      className="relative rounded-[18px] border-[1.5px] border-white bg-white/50 p-2 shadow-[0_3px_20px_rgba(0,0,0,0.16)] backdrop-blur-[8px]"
       initial={{ rotate: -3.2 }}
       whileHover={{
         rotate: 0,
@@ -465,14 +781,14 @@ function ProjectWindow({ hoverHandlers }: { hoverHandlers: Hover }) {
         <Paperclip />
       </div>
       <div className="overflow-hidden rounded-[14px] bg-white/70">
-        <div className="flex items-center gap-1.5 border-b border-white bg-[#d1d1d1]/25 px-3 py-2 backdrop-blur-sm">
+        <div className="flex items-center gap-1.5 border-b border-white bg-[#d1d1d1]/25 px-3 py-2">
           <span className="h-2.5 w-2.5 rounded-full bg-[#fd5d5c]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#fac900]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#34c75a]" />
         </div>
         <div className="p-2">
           <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-[#0d1f2d] shadow-[0_3px_13px_rgba(0,0,0,0.24)]">
-            {hasVideo ? (
+            {hasVideo && (
               <video
                 ref={videoRef}
                 src={PROJECT_VIDEO}
@@ -481,11 +797,10 @@ function ProjectWindow({ hoverHandlers }: { hoverHandlers: Hover }) {
                 playsInline
                 preload="metadata"
                 onError={() => setHasVideo(false)}
-                className="h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover"
               />
-            ) : (
-              <PlanWithMock />
             )}
+            {!hasVideo && <ShotSlideshow playing={playing} />}
             <motion.span
               className="pointer-events-none absolute bottom-2 left-2 rounded-full bg-black/55 px-2.5 py-1 text-[12px] font-medium text-white"
               animate={{ opacity: playing ? 0 : 1 }}
@@ -496,16 +811,14 @@ function ProjectWindow({ hoverHandlers }: { hoverHandlers: Hover }) {
           </div>
           <div className="flex flex-wrap items-end justify-between gap-2 px-2 pb-1 pt-3">
             <div>
-              <h3 className="text-[22px] font-extrabold tracking-[-0.03em]">Plan & With</h3>
-              <p className="text-[13px] font-medium text-[#00252e]/70">
-                AI 여행 일정 공유 플랫폼 · UI/UX 전담
-              </p>
+              <h3 className="text-[22px] font-extrabold tracking-[-0.02em]">Plan &amp; With</h3>
+              <p className="text-[14px] text-[#00252e]/70">AI 여행 일정 공유 플랫폼</p>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {['팀 프로젝트', 'Figma', '2026.07 – 26.08'].map((tag) => (
+              {['UI/UX 전담', 'Figma', '2026'].map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-black/5 px-2.5 py-1 text-[11px] font-medium tracking-[-0.04em] text-[#272727]"
+                  className="rounded-full bg-black/5 px-2.5 py-1 text-[12px] tracking-[-0.01em] text-[#272727]"
                 >
                   {tag}
                 </span>
@@ -518,86 +831,118 @@ function ProjectWindow({ hoverHandlers }: { hoverHandlers: Hover }) {
   )
 }
 
-function PlanWithMock() {
+function ShotSlideshow({ playing }: { playing: boolean }) {
+  const shots = [SHOT_MAIN, SHOT_AI]
+  const [step, setStep] = useState(0)
+  const active = playing ? step % shots.length : 0
+
+  useEffect(() => {
+    if (!playing) return
+    const timer = window.setInterval(() => setStep((prev) => prev + 1), 2200)
+    return () => {
+      window.clearInterval(timer)
+      setStep(0)
+    }
+  }, [playing])
+
   return (
-    <div className="h-full w-full bg-[linear-gradient(160deg,#0d1f2d_0%,#1d6a6a_45%,#c9e86a_100%)] p-4">
-      <div className="rounded-lg bg-white/95 p-3 text-[#00252e] shadow-lg">
-        <div className="flex items-center justify-between">
-          <p className="text-[12px] font-semibold tracking-[-0.03em]">Plan & With</p>
-          <p className="text-[11px] text-black/45">AI 일정 · 공유</p>
-        </div>
-        <div className="mt-3 grid grid-cols-3 gap-2">
-          <div className="col-span-2 rounded-md bg-[#e8f4ea] p-2">
-            <p className="text-[10px] font-medium text-black/45">추천 루트</p>
-            <p className="mt-1 text-[13px] font-bold">Day 1 · 성산 → 월정리</p>
-            <div className="mt-2 h-1.5 rounded-full bg-[#93ba06]/40">
-              <div className="h-full w-2/3 rounded-full bg-[#93ba06]" />
-            </div>
-          </div>
-          <div className="rounded-md bg-[#e5f2fa] p-2">
-            <p className="text-[10px] font-medium text-black/45">캘린더</p>
-            <p className="mt-1 text-[17px] font-extrabold">08</p>
-            <p className="text-[10px]">2026</p>
-          </div>
-        </div>
-        <div className="mt-3 flex gap-1.5">
-          {['일정', '동행', '공유'].map((step, i) => (
-            <div
-              key={step}
-              className={`flex-1 rounded-full px-2 py-1 text-center text-[10px] font-semibold ${
-                i === 0 ? 'bg-[#00252e] text-white' : 'bg-black/5 text-black/50'
-              }`}
-            >
-              {i + 1}. {step}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <>
+      {shots.map((shot, i) => (
+        <motion.img
+          key={shot}
+          src={shot}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          animate={{
+            opacity: active === i ? 1 : 0,
+            scale: playing && active === i ? 1.06 : 1,
+          }}
+          transition={{ opacity: { duration: 0.6 }, scale: { duration: 2.4 } }}
+        />
+      ))}
+    </>
   )
 }
 
 function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
+  const [open, setOpen] = useState<string | null>(null)
+
   return (
-    <section id="stack" className="px-5 py-16 sm:px-10 lg:px-16">
-      <div className="relative mb-10">
-        <Chip
-          label="Stack"
-          chip="bg-[#e5f2fa]"
-          accent="#039cfb"
-          className="absolute -top-4 right-0 sm:right-10"
-          rotate={-23}
-          scale={0.7}
-        />
-        <h2 className="text-[40px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[64px]">
-          기술 스택
-        </h2>
-      </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        {stacks.map((item, i) => (
-          <motion.div
-            key={item.title}
-            data-hoverable
-            className={`flex items-center justify-between rounded-lg px-4 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.14)] ${item.bg}`}
-            initial={{ rotate: i % 2 === 0 ? -1.5 : 1.5 }}
-            whileHover={{ rotate: 0, y: -6, scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-            {...hoverHandlers}
-          >
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[-0.04em] text-black/45">
-                {item.group}
-              </p>
-              <p className="text-[18px] font-semibold tracking-[-0.03em]">{item.title}</p>
-              <p className="mt-0.5 text-[12px] font-medium text-black/60">{item.detail}</p>
-            </div>
-            <span
-              className={`grid h-10 w-10 place-items-center rounded-full border-[1.7px] border-white shadow-[-4px_3px_0_rgba(0,0,0,0.15)] ${item.icon}`}
-            >
-              <span className="h-2 w-2 rounded-full bg-white" />
-            </span>
-          </motion.div>
-        ))}
+    <section
+      id="stack"
+      className="relative mx-3 overflow-hidden rounded-[28px] bg-[#f7f3e9] px-4 py-16 sm:mx-5 sm:py-20"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-70"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(0,37,46,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,37,46,0.07) 1px, transparent 1px)
+          `,
+          backgroundSize: '84px 84px',
+        }}
+      />
+
+      <div className="relative mx-auto min-h-[560px] max-w-5xl lg:min-h-[520px]">
+        <div className="relative pt-4 text-center lg:pt-[38%]">
+          <Chip
+            label="Stack"
+            chip="bg-[#e5f2fa]"
+            accent="#039cfb"
+            className="absolute left-1/2 top-0 -translate-x-[128px] lg:top-[36%]"
+            rotate={-19}
+            scale={0.65}
+          />
+          <h2 className="text-[32px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] sm:text-[44px]">
+            TOOLS I
+            <br className="lg:hidden" /> DESIGN WITH
+          </h2>
+        </div>
+
+        <div className="mt-10 grid gap-3 lg:mt-0 lg:block">
+          {stacks.map((item) => {
+            const expanded = open === item.title
+            return (
+              <motion.button
+                key={item.title}
+                type="button"
+                data-hoverable
+                onClick={() => setOpen(expanded ? null : item.title)}
+                className={`w-full rounded-xl px-4 py-3 text-left shadow-[0_4px_0_rgba(0,0,0,0.08)] lg:absolute lg:w-[268px] ${item.bg} ${item.pos}`}
+                initial={{ rotate: item.rotate }}
+                animate={{ rotate: expanded ? 0 : item.rotate }}
+                whileHover={{ rotate: 0, y: -5, scale: 1.02, zIndex: 30 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                {...hoverHandlers}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-[16px] font-semibold tracking-[-0.01em] text-[#1f1f1f]">
+                    {item.title}
+                  </span>
+                  <motion.span
+                    className="text-[18px] leading-none text-[#1f1f1f]/70"
+                    animate={{ rotate: expanded ? 45 : 0 }}
+                  >
+                    +
+                  </motion.span>
+                </div>
+                <AnimatePresence initial={false}>
+                  {expanded && (
+                    <motion.p
+                      className="overflow-hidden text-[14px] leading-[1.5] text-[#1f1f1f]/70"
+                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                      animate={{ height: 'auto', opacity: 1, marginTop: 8 }}
+                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                      transition={{ duration: 0.22 }}
+                    >
+                      {item.detail}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            )
+          })}
+        </div>
       </div>
     </section>
   )
