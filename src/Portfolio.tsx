@@ -129,21 +129,21 @@ const caseCards = [
     title: 'PLAN & WITH',
     tool: 'FIGMA',
     year: '2026',
-    tint: 'bg-[#f4e7a1]/55',
+    tint: 'bg-[#f4e7a1]/60',
   },
   {
     anchor: 'case-ai',
     title: 'AI 일정 STEP UI',
     tool: 'FIGMA',
     year: '2026',
-    tint: 'bg-[#cfe6c2]/55',
+    tint: 'bg-[#d3e8c6]/60',
   },
   {
     anchor: 'case-works',
     title: '디자인 시스템',
     tool: 'FIGMA',
     year: '2026',
-    tint: 'bg-[#2c3230]/55',
+    tint: 'bg-white/45',
   },
 ]
 
@@ -410,20 +410,17 @@ function CaseStack({
         hoverHandlers.onMouseLeave()
       }}
     >
-      {caseCards.map((card, i) => {
-        const depth = caseCards.length - 1 - i
-        return (
+      {caseCards.map((card, i) => (
           <motion.button
             key={card.anchor}
             type="button"
             data-hoverable
             onClick={() => onOpenCase(card.anchor)}
-            className={`absolute bottom-0 left-0 w-full origin-bottom rounded-xl border border-white/45 px-3.5 py-3 text-left shadow-[0_6px_18px_rgba(0,0,0,0.18)] backdrop-blur-[24px] ${card.tint}`}
-            style={{ zIndex: caseCards.length - depth }}
+            className={`absolute bottom-0 left-0 w-full origin-bottom rounded-xl border border-white/50 px-3.5 py-3 text-left shadow-[0_6px_18px_rgba(0,0,0,0.18)] backdrop-blur-[24px] ${card.tint}`}
+            style={{ zIndex: caseCards.length - i }}
             animate={{
-              y: open ? -depth * gap : -depth * 9,
-              scale: open ? 1 : 1 - depth * 0.035,
-              opacity: open ? 1 : depth > 1 ? 0.55 : 1,
+              y: open ? -i * gap : -i * 10,
+              scale: open ? 1 : 1 - i * 0.04,
             }}
             whileHover={{ scale: 1.035 }}
             transition={{ type: 'spring', stiffness: 260, damping: 24 }}
@@ -453,8 +450,7 @@ function CaseStack({
               </div>
             </div>
           </motion.button>
-        )
-      })}
+      ))}
     </div>
   )
 }
@@ -726,11 +722,11 @@ function Projects({
           </h2>
         </div>
 
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-3xl">
           <ProjectWindow hoverHandlers={hoverHandlers} onOpenCase={onOpenCase} />
         </div>
 
-        <p className="mt-12 text-center text-[15px] text-[#00252e]/55">
+        <p className="mt-10 text-center text-[15px] text-[#00252e]/55">
           카드를 누르면 케이스 스터디가 열립니다
         </p>
       </div>
