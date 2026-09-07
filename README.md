@@ -67,3 +67,17 @@ npm run dev
 ```
 
 개발 서버는 `http://127.0.0.1:43123` 에서 열립니다.
+
+## 웹에서 보기 (GitHub Pages)
+
+`main` 브랜치에 푸시하면 GitHub Actions가 사이트를 빌드해 GitHub Pages에 올립니다.
+
+1. 이 화면 위쪽 **Create repo** 를 눌러 GitHub 저장소를 만듭니다.
+2. 저장소가 생기면 Actions 탭에서 `Deploy GitHub Pages` 워크플로가 돌아갑니다.
+3. 첫 배포가 끝나면 주소는 아래 형태입니다.
+
+```
+https://<GitHub아이디>.github.io/<저장소이름>/
+```
+
+저장소 Settings → Pages 에서 Source가 **GitHub Actions** 로 되어 있는지 한 번만 확인하면 됩니다.
