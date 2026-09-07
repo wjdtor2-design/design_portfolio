@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, sans-serif;
+  --font-script: "Redacted Script", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f3efe6;
+  color: #00252e;
+  overflow-x: hidden;
+}
+
+body.custom-cursor {
+  cursor: none;
+}
+
+body.custom-cursor a,
+body.custom-cursor button,
+body.custom-cursor [data-hoverable] {
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body.custom-cursor,
+  body.custom-cursor a,
+  body.custom-cursor button,
+  body.custom-cursor [data-hoverable] {
+    cursor: auto;
+  }
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::selection {
+  background: #c7fb03;
+  color: #00252e;
+}
