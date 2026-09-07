@@ -20,13 +20,18 @@ const HEADLINE = 'DESIGN SHAPED AROUND YOUR NEEDS'
 const TAGLINE = ['— 화면만 그리지 않습니다.', '쓰는 사람이 헤매지 않는', '흐름을 설계합니다']
 const FOOTER_HEADLINE = ["LET'S BUILD", 'SOMETHING', 'MEMORABLE']
 const FOOTER_NOTE = ['— Have an idea?', "Let's turn it into a sharp digital", 'experience.']
-const EMAIL = 'hello@example.com'
 const PROFILE_IMAGE = '/profile.jpg'
 const PROJECT_VIDEO = '/plan-with.mp4'
-const PROJECT_LINK = 'https://github.com/'
 const BACKDROP = '/hills.jpg'
 const SHOT_MAIN = '/plan-with-main.jpg'
 const SHOT_AI = '/plan-with-ai.jpg'
+const SHOTS = [
+  SHOT_MAIN,
+  '/plan-with-tokyo.jpg',
+  '/plan-with-london.jpg',
+  '/plan-with-paris.jpg',
+  '/plan-with-seoul.jpg',
+]
 
 const INTRO =
   '치과 10년 근무 후 IT 기술에 도전하고자 입문한 부트캠프에서, 설계한 결과물이 시각적으로 즉시 구현되는 UI/UX 디자인에 큰 매력을 느꼈습니다. 독학으로 기본기를 다진 후 실무 아카데미 프로젝트에서 UI/UX를 전담하며 복잡한 입력 동선을 개편하고 컴포넌트 시스템을 구축했습니다. 현장에서 익힌 세심함과 주도적인 배움의 태도로, 유저와 팀 모두가 만족하는 화면을 설계하겠습니다.'
@@ -77,7 +82,7 @@ const stacks = [
     title: 'Notion',
     detail: '디자인 결정과 핸드오프 가이드를 문서로 남겨 팀에 공유합니다.',
     bg: 'bg-[#c6dcf6]',
-    pos: 'left-[14%] top-[78%]',
+    pos: 'left-[38%] top-[78%]',
     rotate: 1,
   },
 ]
@@ -132,13 +137,6 @@ const caseCards = [
   },
 ]
 
-const socialLinks = [
-  { label: 'Instagram', href: 'https://instagram.com/', icon: 'instagram' as const },
-  { label: 'X', href: 'https://x.com/', icon: 'x' as const },
-  { label: 'Phone', href: 'tel:+821000000000', icon: 'phone' as const },
-  { label: 'Email', href: `mailto:${EMAIL}`, icon: 'mail' as const },
-]
-
 const footerLinks = [
   { label: 'About', href: '#about' },
   { label: 'Stack', href: '#stack' },
@@ -160,13 +158,13 @@ export default function Portfolio() {
 
   const mouseX = useMotionValue(-100)
   const mouseY = useMotionValue(-100)
-  const cursorX = useSpring(mouseX, { stiffness: 500, damping: 35, mass: 0.4 })
-  const cursorY = useSpring(mouseY, { stiffness: 500, damping: 35, mass: 0.4 })
-  const glowX = useSpring(mouseX, { stiffness: 120, damping: 22, mass: 0.8 })
-  const glowY = useSpring(mouseY, { stiffness: 120, damping: 22, mass: 0.8 })
+  const cursorX = useSpring(mouseX, { stiffness: 1600, damping: 38, mass: 0.12 })
+  const cursorY = useSpring(mouseY, { stiffness: 1600, damping: 38, mass: 0.12 })
+  const glowX = useSpring(mouseX, { stiffness: 900, damping: 32, mass: 0.18 })
+  const glowY = useSpring(mouseY, { stiffness: 900, damping: 32, mass: 0.18 })
 
-  const parallaxX = useSpring(0, { stiffness: 50, damping: 20 })
-  const parallaxY = useSpring(0, { stiffness: 50, damping: 20 })
+  const parallaxX = useSpring(0, { stiffness: 280, damping: 26, mass: 0.25 })
+  const parallaxY = useSpring(0, { stiffness: 280, damping: 26, mass: 0.25 })
   const doodleX = useTransform(parallaxX, (v) => v * 1.6)
   const doodleY = useTransform(parallaxY, (v) => v * 1.6)
   const gridX = useTransform(parallaxX, (v) => v * 0.7)
@@ -262,19 +260,19 @@ export default function Portfolio() {
             className="absolute h-14 w-14 rounded-full bg-[#c7fb03]/50 blur-xl"
             style={{ left: glowX, top: glowY, x: '-50%', y: '-50%' }}
             animate={{ scale: hovering ? 1.7 : 1, opacity: hovering ? 1 : 0.7 }}
-            transition={{ type: 'spring', stiffness: 240, damping: 22 }}
+            transition={{ type: 'spring', stiffness: 520, damping: 28 }}
           />
           <motion.div
             className="absolute h-8 w-8 rounded-full border-2 border-[#00252e]/30 bg-white/20"
             style={{ left: glowX, top: glowY, x: '-50%', y: '-50%' }}
             animate={{ scale: hovering ? 1.45 : 1 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            transition={{ type: 'spring', stiffness: 560, damping: 28 }}
           />
           <motion.div
             className="absolute h-2.5 w-2.5 rounded-full bg-[#00252e] shadow-[0_0_0_2px_#c7fb03]"
             style={{ left: cursorX, top: cursorY, x: '-50%', y: '-50%' }}
             animate={{ scale: hovering ? 2.2 : 1 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+            transition={{ type: 'spring', stiffness: 700, damping: 30 }}
           />
         </div>
       )}
@@ -305,7 +303,7 @@ function Hero({
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/10" />
-      <div className="relative flex min-h-[78vh] flex-col px-5 pb-10 pt-5 sm:px-8 sm:pt-6 lg:min-h-[88vh]">
+      <div className="relative flex min-h-[86svh] flex-col px-5 pb-10 pt-5 sm:px-8 sm:pt-6 lg:min-h-[92svh]">
         <div className="flex items-start justify-between gap-4">
           <motion.div
             initial={{ opacity: 0, y: -12 }}
@@ -342,7 +340,7 @@ function Hero({
           <div className="hidden w-[220px] sm:block" aria-hidden />
         </div>
 
-        <div className="flex flex-1 items-center justify-center py-12">
+        <div className="pointer-events-none absolute inset-x-5 inset-y-0 flex items-center justify-center sm:inset-x-8">
           <div className="relative">
             <Chip
               label="UI/UX Design"
@@ -350,7 +348,7 @@ function Hero({
               accent="#93ba06"
               className="absolute -top-9 right-0 hidden sm:flex lg:-right-20"
               rotate={8}
-              scale={0.8}
+              scale={0.9}
             />
             <h1 className="max-w-[13ch] text-center text-[38px] font-extrabold uppercase leading-[0.94] tracking-[-0.01em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.35)] sm:text-[62px] lg:text-[78px]">
               {HEADLINE}
@@ -359,14 +357,14 @@ function Hero({
               label="Figma"
               chip="bg-[#f4eaf5]"
               accent="#ec68fd"
-              className="absolute bottom-[22%] left-[-8%] hidden sm:flex"
+              className="absolute bottom-[20%] left-[-9%] hidden sm:flex"
               rotate={-8}
-              scale={0.8}
+              scale={0.9}
             />
           </div>
         </div>
 
-        <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mt-auto flex flex-col gap-10 pt-24 sm:flex-row sm:items-end sm:justify-between">
           <div className="text-[17px] font-medium leading-[1.35] tracking-[-0.01em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-right sm:text-[19px]">
             {TAGLINE.map((line) => (
               <p key={line}>{line}</p>
@@ -439,8 +437,8 @@ function CaseStack({
             y: open ? -i * gap : -i * 11,
             scale: open ? 1 : 1 - i * 0.04,
           }}
-          whileHover={card.ready ? { scale: 1.035 } : undefined}
-          transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+          whileHover={card.ready ? { scale: 1.03 } : undefined}
+          transition={{ type: 'spring', stiffness: 480, damping: 26 }}
         >
           {card.ready ? (
             <img
@@ -530,7 +528,7 @@ function CaseStudy({
         initial={{ opacity: 0, y: 40, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 30, scale: 0.97 }}
-        transition={{ type: 'spring', stiffness: 210, damping: 26 }}
+        transition={{ type: 'spring', stiffness: 480, damping: 28 }}
       >
         <div className="flex items-center gap-3 px-3 py-2.5">
           <div className="flex items-center gap-2">
@@ -565,29 +563,10 @@ function CaseStudy({
               alt="Plan & With 메인 페이지"
               className="w-full rounded-2xl object-cover"
             />
-            <div className="mt-6 flex flex-wrap items-start justify-between gap-3">
+            <div className="mt-6">
               <h2 className="text-[30px] font-extrabold tracking-[-0.02em] sm:text-[38px]">
                 Plan &amp; With
               </h2>
-              <a
-                href={PROJECT_LINK}
-                target="_blank"
-                rel="noreferrer"
-                data-hoverable
-                className="inline-flex items-center gap-1.5 text-[16px] font-medium text-[#2563eb]"
-                {...hoverHandlers}
-              >
-                Preview Link
-                <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden>
-                  <path
-                    d="M6 3h7v7M13 3L4.5 11.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </a>
             </div>
             <p className="mt-3 max-w-[62ch] text-[16px] leading-[1.6] text-[#00252e]/80">
               AI가 추천한 여행 일정을 만들고 공유하는 웹 서비스입니다. 팀 프로젝트에서 UI/UX를
@@ -660,21 +639,24 @@ function CaseStudy({
 
 function About({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
-    <section id="about" className="relative px-5 pb-8 pt-16 sm:px-10 lg:px-16">
-      <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+    <section
+      id="about"
+      className="relative flex min-h-[92svh] scroll-mt-4 items-center px-5 py-20 sm:px-10 lg:px-16"
+    >
+      <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative">
           <Chip
             label="About"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute -top-8 right-0 flex sm:right-10"
-            rotate={-18}
-            scale={0.7}
+            className="mb-4 flex"
+            rotate={-12}
+            scale={0.95}
           />
-          <h2 className="text-[36px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[56px] lg:text-[72px]">
+          <h2 className="text-[44px] font-extrabold uppercase leading-[0.9] tracking-[-0.03em] sm:text-[68px] lg:text-[86px]">
             자기소개
           </h2>
-          <p className="mt-6 max-w-xl text-[15px] font-medium leading-[1.7] tracking-[-0.02em] text-[#00252e]/85 sm:text-[16px]">
+          <p className="mt-7 max-w-xl text-[16px] font-medium leading-[1.75] tracking-[-0.01em] text-[#00252e]/85 sm:text-[18px]">
             {INTRO}
           </p>
         </div>
@@ -687,9 +669,9 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
                   <Pin />
                 </div>
                 <FoldCorner />
-                <p className="pt-2 text-[32px] font-bold text-[#00252e]">{item.value}</p>
-                <p className="mt-2 text-[14px] font-semibold">{item.title}</p>
-                <p className="mt-1 text-[12px] font-medium leading-[140%] text-black/60">
+                <p className="pt-2 text-[34px] font-bold text-[#00252e]">{item.value}</p>
+                <p className="mt-2 text-[15px] font-semibold">{item.title}</p>
+                <p className="mt-1 text-[13px] font-medium leading-[145%] text-black/60">
                   {item.body}
                 </p>
               </div>
@@ -709,18 +691,21 @@ function Projects({
   onOpenCase: (anchor: string) => void
 }) {
   return (
-    <section id="project" className="relative px-4 py-20">
-      <div className="relative mx-auto max-w-6xl">
-        <div className="relative mb-16 text-center">
+    <section
+      id="project"
+      className="relative flex min-h-[92svh] scroll-mt-4 flex-col justify-center px-4 py-20"
+    >
+      <div className="relative mx-auto w-full max-w-6xl">
+        <div className="relative mb-14 text-center">
           <Chip
             label="Projects"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-[calc(50%-172px)] top-[-16px] hidden sm:flex"
+            className="absolute left-[calc(50%-232px)] top-[-14px] hidden sm:flex"
             rotate={-19}
-            scale={0.65}
+            scale={0.95}
           />
-          <h2 className="text-[34px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-[#1f1f1f] sm:text-[48px]">
+          <h2 className="text-[38px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] text-[#1f1f1f] sm:text-[58px]">
             PROJECTS THAT
             <br />
             TELL STORIES
@@ -780,7 +765,7 @@ function ProjectWindow({
         rotate: 0,
         y: -18,
         scale: 1.03,
-        transition: { type: 'spring', stiffness: 260, damping: 18 },
+        transition: { type: 'spring', stiffness: 480, damping: 22 },
       }}
       style={{ transformPerspective: 800 }}
       onMouseEnter={play}
@@ -829,13 +814,13 @@ function ProjectWindow({
 }
 
 function ShotSlideshow({ playing }: { playing: boolean }) {
-  const shots = [SHOT_MAIN, SHOT_AI]
+  const shots = SHOTS
   const [step, setStep] = useState(0)
   const active = playing ? step % shots.length : 0
 
   useEffect(() => {
     if (!playing) return
-    const timer = window.setInterval(() => setStep((prev) => prev + 1), 2200)
+    const timer = window.setInterval(() => setStep((prev) => prev + 1), 1500)
     return () => {
       window.clearInterval(timer)
       setStep(0)
@@ -852,9 +837,9 @@ function ShotSlideshow({ playing }: { playing: boolean }) {
           className="absolute inset-0 h-full w-full object-contain"
           animate={{
             opacity: active === i ? 1 : 0,
-            scale: playing && active === i ? 1.06 : 1,
+            scale: playing && active === i ? 1.04 : 1,
           }}
-          transition={{ opacity: { duration: 0.6 }, scale: { duration: 2.4 } }}
+          transition={{ opacity: { duration: 0.45 }, scale: { duration: 1.7 } }}
         />
       ))}
     </>
@@ -867,7 +852,7 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
     <section
       id="stack"
-      className="relative mx-3 overflow-hidden rounded-[28px] bg-[#f7f3e9] px-4 py-16 sm:mx-5 sm:py-20"
+      className="relative mx-3 flex min-h-[92svh] scroll-mt-4 items-center overflow-hidden rounded-[28px] bg-[#f7f3e9] px-4 py-20 sm:mx-5"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-70"
@@ -880,18 +865,18 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
         }}
       />
 
-      <div className="relative mx-auto max-w-5xl lg:h-[440px]">
+      <div className="relative mx-auto w-full max-w-5xl lg:h-[520px]">
         <div className="relative text-center lg:pointer-events-none lg:absolute lg:inset-0 lg:grid lg:place-items-center">
           <div className="relative inline-block">
             <Chip
               label="Stack"
               chip="bg-[#e5f2fa]"
               accent="#039cfb"
-              className="absolute -left-24 -top-3 hidden lg:flex"
+              className="absolute -left-32 -top-4 hidden lg:flex"
               rotate={-19}
-              scale={0.65}
+              scale={0.95}
             />
-            <h2 className="text-[32px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] sm:text-[44px]">
+            <h2 className="text-[38px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em] sm:text-[58px]">
               TOOLS I
               <br className="lg:hidden" /> DESIGN WITH
             </h2>
@@ -911,7 +896,7 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
                 initial={{ rotate: item.rotate }}
                 animate={{ rotate: expanded ? 0 : item.rotate }}
                 whileHover={{ rotate: 0, y: -5, scale: 1.02, zIndex: 30 }}
-                transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                transition={{ type: 'spring', stiffness: 480, damping: 22 }}
                 {...hoverHandlers}
               >
                 <div className="flex items-center justify-between gap-3">
@@ -958,41 +943,26 @@ function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
         />
         <div className="absolute inset-0 bg-black/12" />
 
-        <div className="relative flex min-h-[420px] flex-col justify-between p-6 sm:p-9 lg:min-h-[500px]">
-          <div className="flex items-start justify-between gap-6">
-            <div className="flex gap-2">
-              {socialLinks.map((link) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  aria-label={link.label}
-                  data-hoverable
-                  className="grid h-9 w-9 place-items-center rounded-full border border-white/40 bg-black/25 text-white backdrop-blur-md"
-                  whileHover={{ y: -3, scale: 1.08 }}
-                  {...hoverHandlers}
-                >
-                  <SocialIcon kind={link.icon} />
-                </motion.a>
-              ))}
-            </div>
-            <div className="max-w-[260px] text-right text-[15px] font-semibold leading-[1.35] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-[17px]">
+        <div className="relative flex min-h-[440px] flex-col justify-between p-6 sm:p-9 lg:min-h-[520px]">
+          <div className="flex justify-end">
+            <div className="max-w-[280px] text-right text-[16px] font-semibold leading-[1.35] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-[18px]">
               {FOOTER_NOTE.map((line) => (
                 <p key={line}>{line}</p>
               ))}
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 pt-16 sm:flex-row sm:items-end sm:justify-between">
-            <div className="relative">
+          <div className="pt-20">
+            <div className="relative inline-block">
               <Chip
                 label="UI/UX Design"
                 chip="bg-[#f4eaf5]"
                 accent="#ec68fd"
-                className="absolute -left-1 -top-6 hidden sm:flex"
+                className="absolute -left-2 -top-7 hidden sm:flex"
                 rotate={-4}
-                scale={0.68}
+                scale={0.85}
               />
-              <h2 className="text-[34px] font-extrabold uppercase leading-[0.95] tracking-[-0.01em] text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.35)] sm:text-[52px]">
+              <h2 className="text-[36px] font-extrabold uppercase leading-[0.95] tracking-[-0.01em] text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.35)] sm:text-[56px]">
                 {FOOTER_HEADLINE.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -1003,20 +973,11 @@ function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
                 label="Figma"
                 chip="bg-[#f4f8e8]"
                 accent="#93ba06"
-                className="absolute -bottom-4 left-10 hidden sm:flex"
+                className="absolute -bottom-5 right-[-18px] hidden sm:flex"
                 rotate={-4}
-                scale={0.68}
+                scale={0.85}
               />
             </div>
-            <motion.a
-              href={`mailto:${EMAIL}`}
-              data-hoverable
-              className="inline-flex w-fit rounded-xl bg-white px-6 py-3 text-[16px] font-medium tracking-[-0.01em] text-[#1a1a1a] shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
-              whileHover={{ y: -3, scale: 1.03 }}
-              {...hoverHandlers}
-            >
-              Let's chat
-            </motion.a>
           </div>
         </div>
       </div>
@@ -1048,8 +1009,7 @@ function Dock({ hoverHandlers }: { hoverHandlers: Hover }) {
         onMouseLeave={() => setActive(null)}
       >
         {dockItems.map((item, i) => {
-          const dist = active === null ? 99 : Math.abs(active - i)
-          const scale = active === null ? 1 : dist === 0 ? 1.4 : dist === 1 ? 1.15 : 1
+          const hovered = active === i
           return (
             <a
               key={item.label}
@@ -1064,8 +1024,8 @@ function Dock({ hoverHandlers }: { hoverHandlers: Hover }) {
             >
               <motion.span
                 className="block h-11 w-11 origin-bottom overflow-hidden rounded-[12px] shadow-[0_2px_6px_rgba(0,0,0,0.28)]"
-                animate={{ scale, y: scale > 1.2 ? -8 : 0 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+                animate={{ scale: hovered ? 1.38 : 1, y: hovered ? -8 : 0 }}
+                transition={{ type: 'spring', stiffness: 700, damping: 28 }}
               >
                 <DockIcon kind={item.icon} />
               </motion.span>
@@ -1099,7 +1059,7 @@ function TiltCard({
         y: -18,
         scale: 1.04,
         zIndex: 20,
-        transition: { type: 'spring', stiffness: 260, damping: 18 },
+        transition: { type: 'spring', stiffness: 480, damping: 22 },
       }}
       style={{ transformPerspective: 800 }}
       {...hoverHandlers}
@@ -1185,46 +1145,6 @@ function Paperclip() {
         strokeLinecap="round"
         fill="none"
       />
-    </svg>
-  )
-}
-
-function SocialIcon({ kind }: { kind: 'instagram' | 'x' | 'phone' | 'mail' }) {
-  if (kind === 'instagram') {
-    return (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
-        <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.7" />
-        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7" />
-        <circle cx="17" cy="7" r="1.1" fill="currentColor" />
-      </svg>
-    )
-  }
-  if (kind === 'x') {
-    return (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
-        <path
-          d="M4 4l7.2 9.3L4.4 20h2.3l5.6-5.6L16.6 20H20l-7.4-9.6L19.4 4h-2.3l-5.2 5.2L8 4H4z"
-          fill="currentColor"
-        />
-      </svg>
-    )
-  }
-  if (kind === 'phone') {
-    return (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
-        <path
-          d="M5.5 4h3l1.5 4-2 1.5a11 11 0 005.5 5.5l1.5-2 4 1.5v3a1.8 1.8 0 01-2 1.8C10.5 19 5 13.5 3.7 6a1.8 1.8 0 011.8-2z"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinejoin="round"
-        />
-      </svg>
-    )
-  }
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
-      <rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" strokeWidth="1.7" />
-      <path d="M4 7l8 6 8-6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   )
 }
@@ -1332,12 +1252,6 @@ function Doodles() {
           fill="#C4E727"
         />
       </svg>
-      <p className="font-script absolute left-[4%] top-[52%] rotate-12 text-[29px] lowercase tracking-[-0.06em] text-[#ffd440]">
-        asaf sdag
-      </p>
-      <p className="font-script absolute right-[10%] top-[62%] -rotate-6 text-[29px] lowercase tracking-[-0.06em] text-[#156cdd]">
-        asaf sdag
-      </p>
       <svg className="absolute right-[18%] top-[12%] h-10 w-16" viewBox="0 0 70 37">
         <circle cx="16.8" cy="18.3" r="16.8" fill="#fff" />
         <circle cx="53.2" cy="18.3" r="16.8" fill="#fff" />
