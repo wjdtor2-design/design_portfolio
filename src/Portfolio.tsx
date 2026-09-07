@@ -239,7 +239,7 @@ export default function Portfolio() {
 
       <div className="relative z-[2]">
         <Hero hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
-        <About hoverHandlers={hoverHandlers} />
+        <About hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
         <Stack hoverHandlers={hoverHandlers} />
         <Projects hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
         <Footer hoverHandlers={hoverHandlers} />
@@ -637,7 +637,13 @@ function CaseStudy({
   )
 }
 
-function About({ hoverHandlers }: { hoverHandlers: Hover }) {
+function About({
+  hoverHandlers,
+  onOpenCase,
+}: {
+  hoverHandlers: Hover
+  onOpenCase: (anchor: string) => void
+}) {
   return (
     <section id="about" className="relative px-5 pb-8 pt-16 sm:px-10 lg:px-16">
       <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -656,18 +662,20 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
           <p className="mt-6 max-w-xl text-[15px] font-medium leading-[1.7] tracking-[-0.02em] text-[#00252e]/85 sm:text-[16px]">
             {INTRO}
           </p>
-          <motion.a
-            href="#project"
-            className="relative mt-8 inline-flex overflow-hidden rounded-xl bg-white px-5 py-3 text-[14px] font-medium tracking-[-0.04em] shadow-[0_6px_10px_rgba(0,0,0,0.15)]"
+          <motion.button
+            type="button"
+            data-hoverable
+            onClick={() => onOpenCase('case-overview')}
+            className="relative mt-8 inline-flex rounded-xl bg-white px-5 py-3 text-[15px] font-medium tracking-[-0.02em] shadow-[0_6px_10px_rgba(0,0,0,0.15)]"
             style={{ rotate: -6 }}
             whileHover={{ rotate: 0, y: -4 }}
             {...hoverHandlers}
           >
-            Plan & With 보기
+            Plan &amp; With 케이스 스터디 열기
             <span className="absolute -right-1 -top-2 text-lg">
               <Pin />
             </span>
-          </motion.a>
+          </motion.button>
         </div>
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
@@ -707,7 +715,7 @@ function Projects({
             label="Projects"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-1/2 top-[-16px] -translate-x-[168px]"
+            className="absolute left-[calc(50%-172px)] top-[-16px]"
             rotate={-19}
             scale={0.65}
           />
@@ -889,7 +897,7 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
             label="Stack"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-1/2 top-0 -translate-x-[128px] lg:top-[36%]"
+            className="absolute left-[calc(50%-142px)] top-0 lg:top-[36%]"
             rotate={-19}
             scale={0.65}
           />
