@@ -1,5 +1,4 @@
 import {
-  AnimatePresence,
   motion,
   useMotionValue,
   useSpring,
@@ -15,147 +14,104 @@ import {
 const NAME = '내 이름 / 영문이름'
 const ROLE = 'UI/UX 디자이너'
 
+const INTRO =
+  '치과 10년 근무 후 IT 기술에 도전하고자 입문한 부트캠프에서, 설계한 결과물이 시각적으로 즉시 구현되는 UI/UX 디자인에 큰 매력을 느꼈습니다. 독학으로 기본기를 다진 후 실무 아카데미 프로젝트에서 UI/UX를 전담하며 복잡한 입력 동선을 개편하고 컴포넌트 시스템을 구축했습니다. 현장에서 익힌 세심함과 주도적인 배움의 태도로, 유저와 팀 모두가 만족하는 화면을 설계하겠습니다.'
+
 const stats = [
   {
-    value: '8+',
-    title: 'Years of Experience',
-    body: '웹사이트, 앱, 디지털 제품을 사용성에 맞춰 설계합니다.',
+    value: '10년',
+    title: '치과 현장 경험',
+    body: '사람을 가까이 보며 익힌 세심함으로 화면의 디테일을 다룹니다.',
     rotate: -3,
   },
   {
-    value: '40+',
-    title: 'Projects Designed',
-    body: '랜딩부터 모바일 앱까지, 브랜드와 제품 경험을 한 흐름으로 만듭니다.',
+    value: 'Bootcamp',
+    title: 'IT 입문',
+    body: '설계가 바로 화면이 되는 UI/UX에 매력을 느끼고 전향했습니다.',
     rotate: 5,
   },
   {
-    value: '12+',
-    title: 'Industries Explored',
-    body: 'SaaS, 핀테크, AI, 에이전시, 서비스 비즈니스를 아우릅니다.',
+    value: '전담',
+    title: 'UI/UX Design',
+    body: '실무 아카데미에서 입력 동선 개편과 컴포넌트 시스템을 맡았습니다.',
     rotate: -8,
   },
   {
-    value: '100%',
-    title: 'Responsive Delivery',
-    body: '데스크톱과 모바일에서 동일한 완성도로 구현합니다.',
+    value: 'Figma',
+    title: 'Design Tool',
+    body: 'Auto Layout, Component, Prototyping으로 핸드오프까지 이어갑니다.',
     rotate: -2,
   },
 ]
 
-const projects = [
+const stacks = [
   {
-    title: 'Northline',
-    tags: ['Branding & Website', 'Figma', '2026'],
-    rotate: 7.65,
-    image:
-      'linear-gradient(140deg, #1a1a1a 0%, #3d2b1f 40%, #c9a227 100%)',
+    group: 'Design Tool',
+    title: 'Figma',
+    detail: 'Auto Layout, Component, Prototyping',
+    bg: 'bg-[#d9e7f5]',
+    icon: 'bg-[#4a96ed]',
   },
   {
-    title: 'Kite Studio',
-    tags: ['Website Design', 'Figma', '2026'],
-    rotate: -3.12,
-    image:
-      'linear-gradient(160deg, #0b1f2a 0%, #1d4e89 55%, #7cc2f6 100%)',
+    group: 'Collaboration',
+    title: 'Git',
+    detail: '버전 관리와 변경 이력',
+    bg: 'bg-[#f3eebc]',
+    icon: 'bg-[#e8d210]',
   },
   {
-    title: 'Sunoma',
-    tags: ['Branding', 'Figma', '2026'],
-    rotate: -7,
-    image:
-      'linear-gradient(145deg, #2a1208 0%, #c45c26 50%, #f4d4a8 100%)',
+    group: 'Collaboration',
+    title: 'GitHub',
+    detail: '저장소 협업과 핸드오프',
+    bg: 'bg-[#dcf5e0]',
+    icon: 'bg-[#52de85]',
   },
   {
-    title: 'Wild Pup',
-    tags: ['Branding & Website', 'Framer', '2026'],
-    rotate: 7.65,
-    image:
-      'linear-gradient(150deg, #10210c 0%, #3a7d2c 45%, #c7fb03 100%)',
-  },
-  {
-    title: 'Miro Space',
-    tags: ['Brand Identity', 'Photoshop', '2026'],
-    rotate: -7,
-    image:
-      'linear-gradient(155deg, #1a1024 0%, #5b3cc4 50%, #f4eaf5 100%)',
+    group: 'Collaboration',
+    title: 'Notion',
+    detail: '문서화와 팀 공유',
+    bg: 'bg-[#ebe6f3]',
+    icon: 'bg-[#8168fd]',
   },
 ]
 
-const services = [
-  { title: 'Website Design', bg: 'bg-[#fbe7e3]', icon: 'bg-[#e8a2a6]' },
-  { title: 'UI/UX Design', bg: 'bg-[#d9e7f5]', icon: 'bg-[#4a96ed]' },
-  { title: 'Brand Identity', bg: 'bg-[#f3eebc]', icon: 'bg-[#e8d210]' },
-  { title: 'Product Systems', bg: 'bg-[#dcf5e0]', icon: 'bg-[#52de85]' },
-  { title: 'AI Exploration', bg: 'bg-[#ebe6f3]', icon: 'bg-[#8168fd]' },
-]
-
-const reviews = [
+const works = [
   {
-    name: 'Ayesha K.',
-    role: 'Creative Director',
-    quote: '“과하지 않으면서도 선명한 디자인.”',
-    body: '현대적이면서도 실무에 바로 넘길 수 있을 만큼 정리가 되어 있었습니다.',
-    rotate: -5,
-    initial: 'A',
-    tint: 'bg-[#fde8c8]',
+    title: '메인 페이지 레이아웃 및 시인성 개편',
+    body: '주요 일정 카드의 크기를 확장하고 핵심 영역(캘린더·추천 루트) 배치를 조정하여 탐색 용이성을 높였습니다.',
+    rotate: 6,
   },
   {
-    name: 'Daniel R.',
-    role: 'Product Lead',
-    quote: '“흐름이 훨씬 쓰기 쉬워졌습니다.”',
-    body: '사용자 여정을 다듬어 제품이 더 집중되고 전문적으로 느껴졌습니다.',
+    title: 'Step UI 전환으로 입력 피로도 개선',
+    body: '한 화면에 모여 있던 AI 일정 입력 폼을 단계별 대화형 UI로 개편해 작성 부담을 낮췄습니다.',
+    rotate: -4,
+  },
+  {
+    title: '8px 그리드 기반 디자인 시스템',
+    body: '파편화되어 있던 프로필 아바타와 카드 요소를 XS~XL 5가지 표준 규격으로 정돈해 시각적 통일성을 확보했습니다.',
+    rotate: 5,
+  },
+  {
+    title: '상세·마이페이지 레이아웃 정돈',
+    body: '답답한 박스 테두리를 정리하고 폰트 스케일을 체계화하여 정보 전달력을 개선했습니다.',
+    rotate: -7,
+  },
+  {
+    title: '반응형 캔버스와 협업 가이드',
+    body: '1920px(메인 컨테이너 1280px) 기준 Auto Layout을 적용하고 Figma 디자인 핸드오프 문서를 공유했습니다.',
     rotate: 3,
-    initial: 'D',
-    tint: 'bg-[#d9e7f5]',
-  },
-  {
-    name: 'Sarah M.',
-    role: 'Founder',
-    quote: '“웹사이트가 드디어 우리 브랜드처럼 느껴집니다.”',
-    body: '아이디어를 이해하기 쉬운, 정제된 웹 경험으로 바꿔 주었습니다.',
-    rotate: 7,
-    initial: 'S',
-    tint: 'bg-[#e8f5d4]',
-  },
-]
-
-const faqs = [
-  {
-    q: 'What can you design?',
-    a: '웹사이트, 앱 UI, 브랜드 시스템, 랜딩 페이지까지 디지털 제품의 시각과 흐름을 함께 설계합니다.',
-    color: 'bg-[#fedcdd]',
-  },
-  {
-    q: 'Do you work with developers?',
-    a: 'Figma 핸드오프와 컴포넌트 가이드를 기준으로 개발팀과 바로 협업할 수 있게 준비합니다.',
-    color: 'bg-[#e0fd72]',
-  },
-  {
-    q: 'What do you need from me?',
-    a: '목표, 레퍼런스, 기존 브랜드 자산이면 충분합니다. 없는 부분은 함께 정리합니다.',
-    color: 'bg-[#f3ea9a]',
-  },
-  {
-    q: 'How fast can we start?',
-    a: '일정과 범위를 짧게 확인한 뒤 보통 며칠 안에 킥오프할 수 있습니다.',
-    color: 'bg-[#bbdafe]',
-  },
-  {
-    q: 'Do you only design visuals?',
-    a: '시각뿐 아니라 정보 구조, 인터랙션, 사용 흐름까지 제품이 실제로 작동하는 방식을 다룹니다.',
-    color: 'bg-[#c7f8d9]',
   },
 ]
 
 const dockItems = [
-  { href: '#about', label: 'About', color: 'from-sky-400 to-blue-600' },
-  { href: '#project', label: 'Projects', color: 'from-lime-300 to-green-600' },
-  { href: '#services', label: 'Services', color: 'from-amber-300 to-orange-500' },
-  { href: '#footer', label: 'Contact', color: 'from-rose-400 to-pink-600' },
+  { href: '#about', label: '소개', color: 'from-sky-400 to-blue-600' },
+  { href: '#stack', label: '스택', color: 'from-amber-300 to-orange-500' },
+  { href: '#project', label: '프로젝트', color: 'from-lime-300 to-green-600' },
+  { href: '#footer', label: '연락', color: 'from-rose-400 to-pink-600' },
 ]
 
 export default function Portfolio() {
   const [hovering, setHovering] = useState(false)
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [showCursor, setShowCursor] = useState(false)
 
   const mouseX = useMotionValue(-100)
@@ -239,14 +195,8 @@ export default function Portfolio() {
       <div className="relative z-[2]">
         <Hero hoverHandlers={hoverHandlers} />
         <About hoverHandlers={hoverHandlers} />
+        <Stack hoverHandlers={hoverHandlers} />
         <Projects hoverHandlers={hoverHandlers} />
-        <Services hoverHandlers={hoverHandlers} />
-        <Reviews hoverHandlers={hoverHandlers} />
-        <Faqs
-          openFaq={openFaq}
-          setOpenFaq={setOpenFaq}
-          hoverHandlers={hoverHandlers}
-        />
         <Footer hoverHandlers={hoverHandlers} />
       </div>
 
@@ -298,17 +248,7 @@ function Hero({ hoverHandlers }: { hoverHandlers: Hover }) {
           backgroundSize: '52px 52px',
         }}
       />
-      <div className="relative flex min-h-[78vh] flex-col px-5 pb-16 pt-6 sm:px-10 sm:pt-8 lg:min-h-[86vh]">
-        <header className="flex items-center justify-between">
-          <a
-            href="#hero"
-            className="text-[24px] font-semibold uppercase tracking-[-0.04em] text-white"
-            {...hoverHandlers}
-          >
-            Creatie®
-          </a>
-        </header>
-
+      <div className="relative flex min-h-[78vh] flex-col px-5 pb-16 pt-10 sm:px-10 sm:pt-12 lg:min-h-[86vh]">
         <div className="flex flex-1 flex-col items-center justify-center gap-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -326,7 +266,7 @@ function Hero({ hoverHandlers }: { hoverHandlers: Hover }) {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#34c75a]" />
                 </span>
                 <span className="text-[12px] font-medium tracking-[-0.04em] text-white">
-                  Available for work
+                  Open to opportunities
                 </span>
               </div>
               <p className="mt-1 text-[13px] font-medium uppercase tracking-[-0.04em] text-white">
@@ -337,21 +277,21 @@ function Hero({ hoverHandlers }: { hoverHandlers: Hover }) {
 
           <div className="relative px-4 text-center">
             <Chip
-              label="Illustration"
+              label="Figma"
               chip="bg-[#f4eaf5]"
               accent="#ec68fd"
               className="absolute -left-2 top-[-18px] hidden sm:flex md:-left-16"
               rotate={10}
               scale={0.72}
             />
-            <h1 className="max-w-[16ch] text-center text-[28px] font-extrabold leading-[0.95] tracking-[-0.04em] text-white sm:text-[44px] lg:text-[56px]">
-              Design that makes people look twice
+            <h1 className="max-w-[18ch] text-center text-[28px] font-extrabold leading-[0.95] tracking-[-0.04em] text-white sm:text-[44px] lg:text-[56px]">
+              유저와 팀이 만족하는 화면을 설계합니다
             </h1>
             <Chip
               label="UI/UX Design"
               chip="bg-[#f4f8e8]"
               accent="#93ba06"
-              className="absolute -right-2 bottom-[-22px] hidden sm:flex md:-right-20"
+              className="absolute -right-2 bottom-[-22px] hidden sm:flex md:-right-24"
               rotate={10}
               scale={0.72}
             />
@@ -375,30 +315,20 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
             rotate={-18}
             scale={0.7}
           />
-          <h2 className="text-[40px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[64px] lg:text-[80px]">
-            i make DESIGNs
-            <br />
-            PEOPLE REMEMBER
+          <h2 className="text-[36px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[56px] lg:text-[72px]">
+            자기소개
           </h2>
-          <p className="mt-6 max-w-md text-[16px] font-medium leading-relaxed tracking-[-0.03em] text-[#00252e]/80">
-            웹사이트, 앱, 브랜드 시스템을 깔끔하게 다듬어
-            <br />
-            아이디어가 더 선명하고 신뢰감 있게 보이게 합니다.
+          <p className="mt-6 max-w-xl text-[15px] font-medium leading-[1.7] tracking-[-0.02em] text-[#00252e]/85 sm:text-[16px]">
+            {INTRO}
           </p>
-          <div className="mt-3 flex items-center gap-3">
-            <span className="h-px w-8 bg-[#00252e]" />
-            <p className="text-[16px] font-medium tracking-[-0.03em]">
-              and work with purpose.
-            </p>
-          </div>
           <motion.a
-            href="#footer"
+            href="#project"
             className="relative mt-8 inline-flex overflow-hidden rounded-xl bg-white px-5 py-3 text-[14px] font-medium tracking-[-0.04em] shadow-[0_6px_10px_rgba(0,0,0,0.15)]"
             style={{ rotate: -6 }}
             whileHover={{ rotate: 0, y: -4 }}
             {...hoverHandlers}
           >
-            Start a project
+            Plan & With 보기
             <span className="absolute -right-1 -top-2 text-lg">
               <Pin />
             </span>
@@ -439,58 +369,76 @@ function Projects({ hoverHandlers }: { hoverHandlers: Hover }) {
           backgroundSize: '40px 40px',
         }}
       />
-      <div className="relative">
-        <div className="relative mb-12 text-center">
+      <div className="relative mx-auto max-w-6xl px-4">
+        <div className="relative mb-10 text-center">
           <Chip
-            label="Projects"
+            label="Project"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-4 top-[-18px] sm:left-16"
+            className="absolute left-0 top-[-18px] sm:left-8"
             rotate={-19}
             scale={0.65}
           />
-          <h2 className="text-[36px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[56px]">
-            Projects That Tell Stories
+          <h2 className="text-[36px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[52px]">
+            프로젝트
           </h2>
         </div>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <TiltCard
-              key={project.title}
-              rotate={project.rotate}
-              hoverHandlers={hoverHandlers}
-            >
-              <article className="relative overflow-hidden rounded-[16px] border border-white bg-white/40 p-3 shadow-[0_3px_19px_rgba(0,0,0,0.16)] backdrop-blur-[8px]">
-                <div className="mb-3 flex items-center gap-1.5 rounded-2xl border-b border-white bg-[#d1d1d1]/18 px-3 py-2 backdrop-blur-sm">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#fd5d5c]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#fac900]" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#34c75a]" />
+
+        <TiltCard rotate={-2} hoverHandlers={hoverHandlers}>
+          <article className="overflow-hidden rounded-[16px] border border-white bg-white/50 p-4 shadow-[0_3px_19px_rgba(0,0,0,0.16)] backdrop-blur-[8px] sm:p-6">
+            <div className="mb-4 flex items-center gap-1.5 rounded-2xl border-b border-white bg-[#d1d1d1]/18 px-3 py-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#fd5d5c]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#fac900]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#34c75a]" />
+            </div>
+            <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+              <PlanWithPreview />
+              <div>
+                <p className="text-[12px] font-semibold uppercase tracking-[-0.04em] text-black/50">
+                  팀 프로젝트 · 2026.07 – 2026.08
+                </p>
+                <h3 className="mt-2 text-[28px] font-extrabold tracking-[-0.04em] sm:text-[34px]">
+                  Plan & With
+                </h3>
+                <p className="mt-1 text-[15px] font-semibold text-[#00252e]/80">
+                  AI 여행 일정 공유 플랫폼
+                </p>
+                <p className="mt-4 text-[14px] leading-relaxed text-[#00252e]/75">
+                  여행 일정을 추천받고 공유하는 웹 서비스의 전체 UI/UX를 전담하여
+                  레이아웃을 개편하고 디자인 시스템을 구축했습니다.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {['UI/UX 전담', '팀 프로젝트', 'Figma', '2026.07 – 26.08'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-black/5 px-2.5 py-1 text-[11px] font-medium tracking-[-0.04em] text-[#272727]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <div
-                  className="relative h-40 overflow-hidden rounded-lg bg-black shadow-[0_3px_13px_rgba(0,0,0,0.24)] sm:h-44"
-                  style={{ backgroundImage: project.image }}
-                >
-                  <div className="absolute inset-6 rounded-md border border-white/20 bg-white/10 backdrop-blur-[2px]" />
-                  <div className="absolute bottom-4 left-4 right-4 h-8 rounded bg-white/80" />
+              </div>
+            </div>
+          </article>
+        </TiltCard>
+
+        <p className="mb-6 mt-12 text-[14px] font-semibold tracking-[-0.03em] text-[#00252e]/70">
+          주요 수행 내용 및 성과
+        </p>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {works.map((work) => (
+            <TiltCard key={work.title} rotate={work.rotate} hoverHandlers={hoverHandlers}>
+              <article className="relative h-full rounded-xl border border-black/10 bg-white p-5 shadow-[16px_10px_0_rgba(0,0,0,0.1)]">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2">
+                  <Pin />
                 </div>
-                <div className="flex items-start justify-between gap-2 px-1 pb-2 pt-3">
-                  <div>
-                    <h3 className="text-[18px] font-semibold tracking-[-0.03em]">
-                      {project.title}
-                    </h3>
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-black/5 px-2 py-1 text-[10px] font-medium tracking-[-0.04em] text-[#272727]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <Paperclip />
-                </div>
+                <FoldCorner />
+                <h4 className="pr-8 pt-2 text-[16px] font-bold leading-snug tracking-[-0.03em]">
+                  {work.title}
+                </h4>
+                <p className="mt-2 text-[13px] font-medium leading-[150%] text-black/60">
+                  {work.body}
+                </p>
               </article>
             </TiltCard>
           ))}
@@ -500,12 +448,51 @@ function Projects({ hoverHandlers }: { hoverHandlers: Hover }) {
   )
 }
 
-function Services({ hoverHandlers }: { hoverHandlers: Hover }) {
+function PlanWithPreview() {
   return (
-    <section id="services" className="px-5 py-16 sm:px-10 lg:px-16">
+    <div className="relative min-h-[240px] overflow-hidden rounded-xl bg-[linear-gradient(160deg,#0d1f2d_0%,#1d6a6a_45%,#c9e86a_100%)] p-4 shadow-[0_3px_13px_rgba(0,0,0,0.24)] sm:min-h-[280px]">
+      <div className="rounded-lg bg-white/95 p-3 text-[#00252e] shadow-lg">
+        <div className="flex items-center justify-between">
+          <p className="text-[11px] font-semibold tracking-[-0.04em]">Plan & With</p>
+          <p className="text-[10px] text-black/45">AI 일정 · 공유</p>
+        </div>
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          <div className="col-span-2 rounded-md bg-[#e8f4ea] p-2">
+            <p className="text-[9px] font-medium text-black/45">추천 루트</p>
+            <p className="mt-1 text-[12px] font-bold">Day 1 · 성산 → 월정리</p>
+            <div className="mt-2 h-1.5 rounded-full bg-[#93ba06]/40">
+              <div className="h-full w-2/3 rounded-full bg-[#93ba06]" />
+            </div>
+          </div>
+          <div className="rounded-md bg-[#e5f2fa] p-2">
+            <p className="text-[9px] font-medium text-black/45">캘린더</p>
+            <p className="mt-1 text-[16px] font-extrabold">08</p>
+            <p className="text-[9px]">2026</p>
+          </div>
+        </div>
+        <div className="mt-3 flex gap-1.5">
+          {['일정', '동행', '공유'].map((step, i) => (
+            <div
+              key={step}
+              className={`flex-1 rounded-full px-2 py-1 text-center text-[9px] font-semibold ${
+                i === 0 ? 'bg-[#00252e] text-white' : 'bg-black/5 text-black/50'
+              }`}
+            >
+              {i + 1}. {step}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
+  return (
+    <section id="stack" className="px-5 py-16 sm:px-10 lg:px-16">
       <div className="relative mb-10">
         <Chip
-          label="Services"
+          label="Stack"
           chip="bg-[#e5f2fa]"
           accent="#039cfb"
           className="absolute -top-4 right-0 sm:right-10"
@@ -513,156 +500,34 @@ function Services({ hoverHandlers }: { hoverHandlers: Hover }) {
           scale={0.7}
         />
         <h2 className="text-[40px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[64px]">
-          where i
-          <br />
-          can help you
+          기술 스택
         </h2>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, i) => (
+      <div className="grid gap-3 sm:grid-cols-2">
+        {stacks.map((item, i) => (
           <motion.div
-            key={service.title}
+            key={item.title}
             data-hoverable
-            className={`flex items-center justify-between rounded-lg px-4 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.14)] ${service.bg}`}
+            className={`flex items-center justify-between rounded-lg px-4 py-4 shadow-[4px_4px_0_rgba(0,0,0,0.14)] ${item.bg}`}
             initial={{ rotate: i % 2 === 0 ? -1.5 : 1.5 }}
             whileHover={{ rotate: 0, y: -6, scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 260, damping: 18 }}
             {...hoverHandlers}
           >
-            <p className="text-[18px] font-semibold tracking-[-0.03em]">{service.title}</p>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[-0.04em] text-black/45">
+                {item.group}
+              </p>
+              <p className="text-[18px] font-semibold tracking-[-0.03em]">{item.title}</p>
+              <p className="mt-0.5 text-[12px] font-medium text-black/60">{item.detail}</p>
+            </div>
             <span
-              className={`grid h-10 w-10 place-items-center rounded-full border-[1.7px] border-white shadow-[-4px_3px_0_rgba(0,0,0,0.15)] ${service.icon}`}
+              className={`grid h-10 w-10 place-items-center rounded-full border-[1.7px] border-white shadow-[-4px_3px_0_rgba(0,0,0,0.15)] ${item.icon}`}
             >
               <span className="h-2 w-2 rounded-full bg-white" />
             </span>
           </motion.div>
         ))}
-      </div>
-    </section>
-  )
-}
-
-function Reviews({ hoverHandlers }: { hoverHandlers: Hover }) {
-  return (
-    <section id="reviews" className="px-5 py-8 sm:px-10 lg:px-16">
-      <div className="relative mb-12">
-        <Chip
-          label="Reviews"
-          chip="bg-[#e5f2fa]"
-          accent="#039cfb"
-          className="absolute -top-2 right-2"
-          rotate={-17}
-          scale={0.7}
-        />
-        <h2 className="text-[40px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[64px]">
-          CLIENTS LIKED
-          <br />
-          THE PIXELS
-        </h2>
-      </div>
-      <div className="grid gap-8 md:grid-cols-3">
-        {reviews.map((review) => (
-          <TiltCard key={review.name} rotate={review.rotate} hoverHandlers={hoverHandlers}>
-            <article className="relative rounded-[14px] bg-white p-5 shadow-[12px_6px_0_rgba(0,0,0,0.12)]">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <Pin />
-              </div>
-              <div className="flex items-center gap-3">
-                <div
-                  className={`grid h-10 w-10 place-items-center rounded-full text-sm font-bold ${review.tint}`}
-                >
-                  {review.initial}
-                </div>
-                <div>
-                  <p className="text-[13px] font-medium capitalize tracking-[-0.04em]">
-                    {review.name}
-                  </p>
-                  <p className="text-[11px] font-medium capitalize tracking-[-0.04em] text-[#272727]/55">
-                    {review.role}
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 text-[16px] font-semibold tracking-[-0.03em]">{review.quote}</p>
-              <div className="mt-3 flex gap-0.5 text-[#fcbb40]">
-                {'★★★★★'.split('').map((s, i) => (
-                  <span key={i}>{s}</span>
-                ))}
-              </div>
-              <p className="mt-3 text-[13px] leading-relaxed text-[#272727]/80">{review.body}</p>
-              <div className="absolute -bottom-1 -right-1">
-                <FoldCorner />
-              </div>
-            </article>
-          </TiltCard>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function Faqs({
-  openFaq,
-  setOpenFaq,
-  hoverHandlers,
-}: {
-  openFaq: number | null
-  setOpenFaq: (i: number | null) => void
-  hoverHandlers: Hover
-}) {
-  return (
-    <section id="faqs" className="px-5 py-16 sm:px-10 lg:px-16">
-      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="relative">
-          <Chip
-            label="FAQs"
-            chip="bg-[#e5f2fa]"
-            accent="#039cfb"
-            className="absolute -top-4 right-0"
-            rotate={-18}
-            scale={0.7}
-          />
-          <h2 className="text-[40px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[56px]">
-            Answer Before
-            <br />
-            We Starts
-          </h2>
-        </div>
-        <div className="space-y-3">
-          {faqs.map((faq, i) => {
-            const open = openFaq === i
-            return (
-              <motion.button
-                key={faq.q}
-                type="button"
-                data-hoverable
-                onClick={() => setOpenFaq(open ? null : i)}
-                className={`w-full rounded-xl p-4 text-left shadow-[7px_6px_0_rgba(0,0,0,0.12)] ${faq.color}`}
-                initial={{ rotate: i % 2 ? 1 : -1 }}
-                whileHover={{ rotate: 0, y: -4 }}
-                {...hoverHandlers}
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <p className="text-[16px] font-medium tracking-[-0.02em]">{faq.q}</p>
-                  <span className="grid h-6 w-6 shrink-0 place-items-center text-xl leading-none">
-                    {open ? '–' : '+'}
-                  </span>
-                </div>
-                <AnimatePresence>
-                  {open && (
-                    <motion.p
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden pt-2 text-[14px] leading-relaxed text-black/70"
-                    >
-                      {faq.a}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </motion.button>
-            )
-          })}
-        </div>
       </div>
     </section>
   )
@@ -676,50 +541,34 @@ function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md sm:p-10">
           <div className="flex flex-wrap gap-3">
             <Chip label="UI/UX Design" chip="bg-[#f4eaf5]" accent="#ec68fd" rotate={-6} scale={0.72} />
-            <Chip label="Illustration" chip="bg-[#f4f8e8]" accent="#93ba06" rotate={9} scale={0.72} />
-            <Chip label="3D Design" chip="bg-[#f1eefc]" accent="#8168fd" rotate={-5} scale={0.72} />
+            <Chip label="Figma" chip="bg-[#f4f8e8]" accent="#93ba06" rotate={9} scale={0.72} />
           </div>
-          <h2 className="mt-8 max-w-[12ch] text-[36px] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] sm:text-[52px]">
-            Let’s build something memorable
+          <h2 className="mt-8 max-w-[16ch] text-[32px] font-extrabold leading-[1.05] tracking-[-0.04em] sm:text-[44px]">
+            유저와 팀 모두가 만족하는 화면을 설계하겠습니다
           </h2>
-          <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p className="flex items-center gap-2 text-[14px] font-semibold tracking-[-0.3px]">
-              <span className="h-px w-8 bg-white" />
-              Have an idea?
-            </p>
-            <p className="text-[14px] font-semibold tracking-[-0.3px] sm:text-right">
-              Let’s turn it into a sharp digital experience.
-            </p>
-          </div>
           <motion.a
             href="mailto:hello@example.com"
             className="mt-8 inline-flex rounded-lg bg-white px-6 py-2.5 text-[14px] font-medium tracking-[-0.04em] text-[#1a1a1a] shadow-[0_6px_10px_rgba(0,0,0,0.15)]"
             whileHover={{ y: -3, scale: 1.03 }}
             {...hoverHandlers}
           >
-            Let's chat
+            연락하기
           </motion.a>
         </div>
         <div className="mt-10 flex flex-col gap-6 text-white/90 sm:flex-row sm:items-end sm:justify-between">
-          <p className="text-[20px] font-medium uppercase tracking-[-0.04em]">Creatie®</p>
-          <div className="grid grid-cols-2 gap-x-10 gap-y-2 text-[13px] uppercase tracking-[-0.03em] sm:flex sm:gap-6">
+          <p className="text-[16px] font-medium tracking-[-0.04em]">{NAME}</p>
+          <div className="flex flex-wrap gap-5 text-[13px] uppercase tracking-[-0.03em]">
             <a href="#about" {...hoverHandlers}>
-              ABOUT
+              소개
             </a>
-            <a href="#services" {...hoverHandlers}>
-              SERVICES
+            <a href="#stack" {...hoverHandlers}>
+              스택
             </a>
             <a href="#project" {...hoverHandlers}>
-              PROJECTS
-            </a>
-            <a href="#reviews" {...hoverHandlers}>
-              REVIEWS
-            </a>
-            <a href="#faqs" {...hoverHandlers}>
-              FAQS
+              프로젝트
             </a>
             <a href="#footer" {...hoverHandlers}>
-              CONTACT
+              연락
             </a>
           </div>
         </div>
@@ -862,20 +711,6 @@ function FoldCorner() {
       <path d="M 0 0.037 L 44 37.975 L 16.203 44.111 C 13.028 44.812 9.867 42.892 9.163 39.834 Z" fill="rgb(0,0,0)" opacity="0.2" />
       <path d="M 0 -0.028 L 41.061 38.034 C 23.465 38.953 20.986 39.177 8.125 39.849 C 4.89 40.018 2.125 37.634 1.949 34.524 Z" fill="rgb(199,251,3)" />
       <path d="M 41.061 38.739 L 0.002 0.038 L 29.017 -1.705 C 36.028 -2.127 41.901 3.537 41.733 10.559 Z" fill="rgb(0,37,46)" />
-    </svg>
-  )
-}
-
-function Paperclip() {
-  return (
-    <svg width="22" height="36" viewBox="0 0 30 48" fill="none" aria-hidden className="-rotate-[20deg]">
-      <path
-        d="M 0 16.005 L 14.5 43.775 C 16.602 47.799 21.568 49.358 25.593 47.257 C 29.618 45.155 31.177 40.189 29.075 36.164 L 11.495 2.496 C 10.308 0.222 7.502 -0.659 5.227 0.528 C 2.991 1.696 2.096 4.436 3.211 6.699 L 5.27 10.878"
-        stroke="#3e4cff"
-        strokeWidth="3"
-        strokeLinecap="round"
-        fill="none"
-      />
     </svg>
   )
 }
