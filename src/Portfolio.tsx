@@ -667,7 +667,7 @@ function About({ hoverHandlers }: { hoverHandlers: Hover }) {
             label="About"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute -top-8 right-0 sm:right-10"
+            className="absolute -top-8 right-0 flex sm:right-10"
             rotate={-18}
             scale={0.7}
           />
@@ -716,7 +716,7 @@ function Projects({
             label="Projects"
             chip="bg-[#e5f2fa]"
             accent="#039cfb"
-            className="absolute left-[calc(50%-172px)] top-[-16px]"
+            className="absolute left-[calc(50%-172px)] top-[-16px] hidden sm:flex"
             rotate={-19}
             scale={0.65}
           />
@@ -1126,7 +1126,7 @@ function Chip({
 }) {
   return (
     <motion.div
-      className={`pointer-events-none relative inline-flex items-center ${className}`}
+      className={`pointer-events-none items-center ${className}`}
       style={{ rotate, scale }}
     >
       <div className={`relative rounded-[7px] px-3 py-1.5 shadow-[0_0_10px_rgba(0,0,0,0.04)] ${chip}`}>
