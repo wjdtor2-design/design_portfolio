@@ -15,9 +15,12 @@ import {
 
 const LOGO = 'Gwak Ji Eun'
 const NAME = '곽지은 / Gwak Ji Eun'
-const ROLE = 'UI/UX 디자이너'
+const ROLE = 'UI/UX DESIGNER'
 const HEADLINE = 'DESIGN SHAPED AROUND YOUR NEEDS'
 const TAGLINE = ['— 화면만 그리지 않습니다.', '쓰는 사람이 헤매지 않는', '흐름을 설계합니다']
+const FOOTER_HEADLINE = ["LET'S BUILD", 'SOMETHING', 'MEMORABLE']
+const FOOTER_NOTE = ['— Have an idea?', "Let's turn it into a sharp digital", 'experience.']
+const EMAIL = 'hello@example.com'
 const PROFILE_IMAGE = '/profile.jpg'
 const PROJECT_VIDEO = '/plan-with.mp4'
 const PROJECT_LINK = 'https://github.com/'
@@ -60,43 +63,22 @@ const stacks = [
     title: 'Figma',
     detail: '화면 설계부터 핸드오프까지 전 과정을 Figma 한 파일에서 진행합니다.',
     bg: 'bg-[#f9d4da]',
-    pos: 'left-[6%] top-[14%]',
+    pos: 'left-[8%] top-[12%]',
     rotate: -2,
-  },
-  {
-    title: 'Auto Layout',
-    detail: '1920px 캔버스, 1280px 메인 컨테이너 기준 반응형 규칙을 세웁니다.',
-    bg: 'bg-[#d5ef43]',
-    pos: 'right-[8%] top-[12%]',
-    rotate: 2,
-  },
-  {
-    title: 'Component & Variants',
-    detail: '아바타와 카드를 XS~XL 5단계로 표준화해 재사용 가능한 세트로 묶습니다.',
-    bg: 'bg-[#c6dcf6]',
-    pos: 'left-[3%] top-[44%]',
-    rotate: 1,
-  },
-  {
-    title: 'Prototyping',
-    detail: 'Step UI 흐름을 프로토타입으로 검증한 뒤 화면을 확정합니다.',
-    bg: 'bg-[#fae59a]',
-    pos: 'right-[4%] top-[48%]',
-    rotate: -1,
   },
   {
     title: 'Git & GitHub',
     detail: '브랜치와 커밋 이력으로 팀 작업물의 변경 과정을 따라갑니다.',
-    bg: 'bg-[#c8eed4]',
-    pos: 'left-[24%] top-[74%]',
-    rotate: -2,
+    bg: 'bg-[#d5ef43]',
+    pos: 'right-[10%] top-[18%]',
+    rotate: 2,
   },
   {
     title: 'Notion',
     detail: '디자인 결정과 핸드오프 가이드를 문서로 남겨 팀에 공유합니다.',
-    bg: 'bg-[#e2d9f7]',
-    pos: 'right-[22%] top-[78%]',
-    rotate: 2,
+    bg: 'bg-[#c6dcf6]',
+    pos: 'left-[14%] top-[78%]',
+    rotate: 1,
   },
 ]
 
@@ -125,26 +107,43 @@ const works = [
 
 const caseCards = [
   {
-    anchor: 'case-overview',
+    id: 'plan-with',
     title: 'PLAN & WITH',
     tool: 'FIGMA',
     year: '2026',
     tint: 'bg-[#f4e7a1]/60',
+    ready: true,
   },
   {
-    anchor: 'case-ai',
-    title: 'AI 일정 STEP UI',
+    id: 'next-1',
+    title: 'NEXT PROJECT',
     tool: 'FIGMA',
     year: '2026',
-    tint: 'bg-[#d3e8c6]/60',
+    tint: 'bg-[#d3e8c6]/55',
+    ready: false,
   },
   {
-    anchor: 'case-works',
-    title: '디자인 시스템',
+    id: 'next-2',
+    title: 'NEXT PROJECT',
     tool: 'FIGMA',
     year: '2026',
-    tint: 'bg-white/45',
+    tint: 'bg-white/40',
+    ready: false,
   },
+]
+
+const socialLinks = [
+  { label: 'Instagram', href: 'https://instagram.com/', icon: 'instagram' as const },
+  { label: 'X', href: 'https://x.com/', icon: 'x' as const },
+  { label: 'Phone', href: 'tel:+821000000000', icon: 'phone' as const },
+  { label: 'Email', href: `mailto:${EMAIL}`, icon: 'mail' as const },
+]
+
+const footerLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Projects', href: '#project' },
+  { label: 'Contact', href: '#footer' },
 ]
 
 const dockItems = [
@@ -239,7 +238,7 @@ export default function Portfolio() {
 
       <div className="relative z-[2]">
         <Hero hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
-        <About hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
+        <About hoverHandlers={hoverHandlers} />
         <Stack hoverHandlers={hoverHandlers} />
         <Projects hoverHandlers={hoverHandlers} onOpenCase={setCaseAnchor} />
         <Footer hoverHandlers={hoverHandlers} />
@@ -305,57 +304,70 @@ function Hero({
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/10" />
       <div className="relative flex min-h-[78vh] flex-col px-5 pb-10 pt-5 sm:px-8 sm:pt-6 lg:min-h-[88vh]">
-        <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex w-fit items-center gap-3 rounded-2xl border border-white/50 bg-white/25 px-3 py-2.5 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.7)] backdrop-blur-[40px]"
-          {...hoverHandlers}
-        >
-          <ProfileAvatar />
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#34c75a] opacity-70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#34c75a]" />
-              </span>
-              <span className="text-[12px] tracking-[-0.01em] text-[#00252e]/75">
-                Available for work
-              </span>
+        <div className="flex items-start justify-between gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex w-fit items-center gap-3 rounded-2xl border border-white/50 bg-white/25 px-3 py-2.5 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.7)] backdrop-blur-[40px]"
+            {...hoverHandlers}
+          >
+            <ProfileAvatar />
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#34c75a] opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#34c75a]" />
+                </span>
+                <span className="text-[12px] tracking-[-0.01em] text-[#00252e]/75">
+                  Available for work
+                </span>
+              </div>
+              <p className="mt-0.5 text-[15px] font-semibold uppercase tracking-[0.01em] text-[#00252e]">
+                {LOGO} — {ROLE}
+              </p>
             </div>
-            <p className="mt-0.5 text-[15px] font-semibold uppercase tracking-[0.01em] text-[#00252e]">
-              {LOGO} — {ROLE}
-            </p>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        <div className="flex flex-1 items-center justify-center py-10">
+          <a
+            href="#hero"
+            className="hidden pt-1 text-[17px] font-semibold uppercase tracking-[0.02em] text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)] sm:block"
+            {...hoverHandlers}
+          >
+            {LOGO}
+            <sup className="ml-0.5 text-[10px]">®</sup>
+          </a>
+
+          <div className="hidden w-[220px] sm:block" aria-hidden />
+        </div>
+
+        <div className="flex flex-1 items-center justify-center py-12">
           <div className="relative">
             <Chip
               label="UI/UX Design"
               chip="bg-[#f4f8e8]"
               accent="#93ba06"
-              className="absolute -top-10 right-0 hidden sm:flex lg:-right-16"
+              className="absolute -top-9 right-0 hidden sm:flex lg:-right-20"
               rotate={8}
-              scale={0.78}
+              scale={0.8}
             />
-            <h1 className="max-w-[13ch] text-[38px] font-extrabold uppercase leading-[0.92] tracking-[-0.02em] text-[#151515] drop-shadow-[0_2px_14px_rgba(255,255,255,0.5)] sm:text-[62px] lg:text-[80px]">
+            <h1 className="max-w-[13ch] text-center text-[38px] font-extrabold uppercase leading-[0.94] tracking-[-0.01em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.35)] sm:text-[62px] lg:text-[78px]">
               {HEADLINE}
             </h1>
             <Chip
               label="Figma"
               chip="bg-[#f4eaf5]"
               accent="#ec68fd"
-              className="absolute bottom-[24%] left-[-6%] hidden sm:flex"
+              className="absolute bottom-[22%] left-[-8%] hidden sm:flex"
               rotate={-8}
-              scale={0.78}
+              scale={0.8}
             />
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-          <div className="text-[17px] font-medium leading-[1.35] tracking-[-0.01em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.35)] sm:text-right sm:text-[19px]">
+        <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between">
+          <div className="text-[17px] font-medium leading-[1.35] tracking-[-0.01em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-right sm:text-[19px]">
             {TAGLINE.map((line) => (
               <p key={line}>{line}</p>
             ))}
@@ -396,11 +408,13 @@ function CaseStack({
   onOpenCase: (anchor: string) => void
 }) {
   const [open, setOpen] = useState(false)
-  const gap = 62
+  const cardHeight = 72
+  const gap = cardHeight + 10
 
   return (
     <div
-      className="relative h-[176px] w-full sm:w-[320px]"
+      className="relative w-full sm:w-[300px]"
+      style={{ height: cardHeight + gap * (caseCards.length - 1) }}
       onMouseEnter={() => {
         setOpen(true)
         hoverHandlers.onMouseEnter()
@@ -411,45 +425,56 @@ function CaseStack({
       }}
     >
       {caseCards.map((card, i) => (
-          <motion.button
-            key={card.anchor}
-            type="button"
-            data-hoverable
-            onClick={() => onOpenCase(card.anchor)}
-            className={`absolute bottom-0 left-0 w-full origin-bottom rounded-xl border border-white/50 px-3.5 py-3 text-left shadow-[0_6px_18px_rgba(0,0,0,0.18)] backdrop-blur-[24px] ${card.tint}`}
-            style={{ zIndex: caseCards.length - i }}
-            animate={{
-              y: open ? -i * gap : -i * 10,
-              scale: open ? 1 : 1 - i * 0.04,
-            }}
-            whileHover={{ scale: 1.035 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-          >
-            <div className="flex items-center gap-3">
-              <img
-                src={i === 1 ? SHOT_AI : SHOT_MAIN}
-                alt=""
-                className="h-10 w-14 shrink-0 rounded-md object-cover"
-              />
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-[11px] font-semibold tracking-[0.06em] text-[#00252e]/55">
-                    {card.tool}
-                  </span>
-                  <span className="text-[11px] text-[#00252e]/55">{card.year}</span>
-                </div>
-                <p className="truncate text-[15px] font-bold uppercase tracking-[-0.01em] text-[#00252e]">
-                  {card.title}
-                </p>
-                <div className="mt-0.5 flex items-center justify-between gap-2">
-                  <span className="text-[11px] font-medium tracking-[0.04em] text-[#00252e]/60">
-                    VIEW CASE STUDY
-                  </span>
-                  <span className="text-[13px] text-[#00252e]/60">→</span>
-                </div>
-              </div>
+        <motion.button
+          key={card.id}
+          type="button"
+          data-hoverable
+          disabled={!card.ready}
+          onClick={() => card.ready && onOpenCase('case-overview')}
+          className={`absolute bottom-0 left-0 flex w-full origin-bottom items-center gap-3 rounded-xl border border-white/50 px-3.5 text-left shadow-[0_6px_18px_rgba(0,0,0,0.18)] backdrop-blur-[24px] ${card.tint} ${
+            card.ready ? '' : 'cursor-default'
+          }`}
+          style={{ height: cardHeight, zIndex: caseCards.length - i }}
+          animate={{
+            y: open ? -i * gap : -i * 11,
+            scale: open ? 1 : 1 - i * 0.04,
+          }}
+          whileHover={card.ready ? { scale: 1.035 } : undefined}
+          transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+        >
+          {card.ready ? (
+            <img
+              src={SHOT_MAIN}
+              alt=""
+              className="h-11 w-14 shrink-0 rounded-md object-cover"
+            />
+          ) : (
+            <span className="grid h-11 w-14 shrink-0 place-items-center rounded-md border border-dashed border-[#00252e]/25 text-[16px] text-[#00252e]/35">
+              +
+            </span>
+          )}
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] font-semibold tracking-[0.06em] text-[#00252e]/55">
+                {card.tool}
+              </span>
+              <span className="text-[11px] text-[#00252e]/55">{card.year}</span>
             </div>
-          </motion.button>
+            <p
+              className={`truncate text-[15px] font-bold uppercase tracking-[-0.01em] ${
+                card.ready ? 'text-[#00252e]' : 'text-[#00252e]/45'
+              }`}
+            >
+              {card.title}
+            </p>
+            <div className="mt-0.5 flex items-center justify-between gap-2">
+              <span className="text-[11px] font-medium tracking-[0.04em] text-[#00252e]/60">
+                {card.ready ? 'VIEW CASE STUDY' : 'COMING SOON · 준비중'}
+              </span>
+              {card.ready && <span className="text-[13px] text-[#00252e]/60">→</span>}
+            </div>
+          </div>
+        </motion.button>
       ))}
     </div>
   )
@@ -633,13 +658,7 @@ function CaseStudy({
   )
 }
 
-function About({
-  hoverHandlers,
-  onOpenCase,
-}: {
-  hoverHandlers: Hover
-  onOpenCase: (anchor: string) => void
-}) {
+function About({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
     <section id="about" className="relative px-5 pb-8 pt-16 sm:px-10 lg:px-16">
       <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -658,20 +677,6 @@ function About({
           <p className="mt-6 max-w-xl text-[15px] font-medium leading-[1.7] tracking-[-0.02em] text-[#00252e]/85 sm:text-[16px]">
             {INTRO}
           </p>
-          <motion.button
-            type="button"
-            data-hoverable
-            onClick={() => onOpenCase('case-overview')}
-            className="relative mt-8 inline-flex rounded-xl bg-white px-5 py-3 text-[15px] font-medium tracking-[-0.02em] shadow-[0_6px_10px_rgba(0,0,0,0.15)]"
-            style={{ rotate: -6 }}
-            whileHover={{ rotate: 0, y: -4 }}
-            {...hoverHandlers}
-          >
-            Plan &amp; With 케이스 스터디 열기
-            <span className="absolute -right-1 -top-2 text-lg">
-              <Pin />
-            </span>
-          </motion.button>
         </div>
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
@@ -722,11 +727,11 @@ function Projects({
           </h2>
         </div>
 
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-[520px]">
           <ProjectWindow hoverHandlers={hoverHandlers} onOpenCase={onOpenCase} />
         </div>
 
-        <p className="mt-10 text-center text-[15px] text-[#00252e]/55">
+        <p className="mt-12 text-center text-[15px] text-[#00252e]/55">
           카드를 누르면 케이스 스터디가 열립니다
         </p>
       </div>
@@ -769,7 +774,7 @@ function ProjectWindow({
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') onOpenCase('case-overview')
       }}
-      className="relative rounded-[18px] border-[1.5px] border-white bg-white/50 p-2 shadow-[0_3px_20px_rgba(0,0,0,0.16)] backdrop-blur-[8px]"
+      className="relative rounded-[12px] border border-black/5 bg-white p-2.5 shadow-[0_10px_28px_rgba(0,0,0,0.14)]"
       initial={{ rotate: -3.2 }}
       whileHover={{
         rotate: 0,
@@ -781,54 +786,42 @@ function ProjectWindow({
       onMouseEnter={play}
       onMouseLeave={stop}
     >
-      <div className="absolute -right-3 -top-5 z-10 rotate-[18deg]">
+      <div className="absolute -top-6 right-8 z-10 rotate-[18deg]">
         <Paperclip />
       </div>
-      <div className="overflow-hidden rounded-[14px] bg-white/70">
-        <div className="flex items-center gap-1.5 border-b border-white bg-[#d1d1d1]/25 px-3 py-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#fd5d5c]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#fac900]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#34c75a]" />
-        </div>
-        <div className="p-2">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-[#0d1f2d] shadow-[0_3px_13px_rgba(0,0,0,0.24)]">
-            {hasVideo && (
-              <video
-                ref={videoRef}
-                src={PROJECT_VIDEO}
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                onError={() => setHasVideo(false)}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            )}
-            {!hasVideo && <ShotSlideshow playing={playing} />}
-            <motion.span
-              className="pointer-events-none absolute bottom-2 left-2 rounded-full bg-black/55 px-2.5 py-1 text-[12px] font-medium text-white"
-              animate={{ opacity: playing ? 0 : 1 }}
-              transition={{ duration: 0.2 }}
-            >
-              마우스를 올리면 재생됩니다
-            </motion.span>
-          </div>
-          <div className="flex flex-wrap items-end justify-between gap-2 px-2 pb-1 pt-3">
-            <div>
-              <h3 className="text-[22px] font-extrabold tracking-[-0.02em]">Plan &amp; With</h3>
-              <p className="text-[14px] text-[#00252e]/70">AI 여행 일정 공유 플랫폼</p>
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {['UI/UX 전담', 'Figma', '2026'].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-black/5 px-2.5 py-1 text-[12px] tracking-[-0.01em] text-[#272727]"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+      <div className="flex items-center gap-[5px] pb-2 pl-1">
+        <span className="h-[7px] w-[7px] rounded-full bg-[#fd5d5c]" />
+        <span className="h-[7px] w-[7px] rounded-full bg-[#fac900]" />
+        <span className="h-[7px] w-[7px] rounded-full bg-[#34c75a]" />
+      </div>
+      <div className="relative aspect-[16/9] overflow-hidden rounded-[6px] bg-[#0b1622]">
+        {hasVideo && (
+          <video
+            ref={videoRef}
+            src={PROJECT_VIDEO}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onError={() => setHasVideo(false)}
+            className="absolute inset-0 h-full w-full object-contain"
+          />
+        )}
+        {!hasVideo && <ShotSlideshow playing={playing} />}
+        <motion.span
+          className="pointer-events-none absolute bottom-2 left-2 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white"
+          animate={{ opacity: playing ? 0 : 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          마우스를 올리면 재생됩니다
+        </motion.span>
+      </div>
+      <div className="flex items-baseline justify-between gap-3 px-1 pt-2.5">
+        <h3 className="text-[17px] font-bold tracking-[-0.01em]">Plan &amp; With</h3>
+        <div className="flex items-baseline gap-3 text-[11px] text-[#00252e]/55">
+          <span>UI/UX Design</span>
+          <span>Figma</span>
+          <span>2026</span>
         </div>
       </div>
     </motion.article>
@@ -856,7 +849,7 @@ function ShotSlideshow({ playing }: { playing: boolean }) {
           key={shot}
           src={shot}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-contain"
           animate={{
             opacity: active === i ? 1 : 0,
             scale: playing && active === i ? 1.06 : 1,
@@ -887,20 +880,22 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
         }}
       />
 
-      <div className="relative mx-auto min-h-[560px] max-w-5xl lg:min-h-[520px]">
-        <div className="relative pt-4 text-center lg:pt-[38%]">
-          <Chip
-            label="Stack"
-            chip="bg-[#e5f2fa]"
-            accent="#039cfb"
-            className="absolute left-[calc(50%-142px)] top-0 lg:top-[36%]"
-            rotate={-19}
-            scale={0.65}
-          />
-          <h2 className="text-[32px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] sm:text-[44px]">
-            TOOLS I
-            <br className="lg:hidden" /> DESIGN WITH
-          </h2>
+      <div className="relative mx-auto max-w-5xl lg:h-[440px]">
+        <div className="relative text-center lg:pointer-events-none lg:absolute lg:inset-0 lg:grid lg:place-items-center">
+          <div className="relative inline-block">
+            <Chip
+              label="Stack"
+              chip="bg-[#e5f2fa]"
+              accent="#039cfb"
+              className="absolute -left-24 -top-3 hidden lg:flex"
+              rotate={-19}
+              scale={0.65}
+            />
+            <h2 className="text-[32px] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] sm:text-[44px]">
+              TOOLS I
+              <br className="lg:hidden" /> DESIGN WITH
+            </h2>
+          </div>
         </div>
 
         <div className="mt-10 grid gap-3 lg:mt-0 lg:block">
@@ -912,7 +907,7 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
                 type="button"
                 data-hoverable
                 onClick={() => setOpen(expanded ? null : item.title)}
-                className={`w-full rounded-xl px-4 py-3 text-left shadow-[0_4px_0_rgba(0,0,0,0.08)] lg:absolute lg:w-[268px] ${item.bg} ${item.pos}`}
+                className={`w-full rounded-xl px-4 py-3 text-left shadow-[0_4px_0_rgba(0,0,0,0.08)] lg:absolute lg:w-[252px] ${item.bg} ${item.pos}`}
                 initial={{ rotate: item.rotate }}
                 animate={{ rotate: expanded ? 0 : item.rotate }}
                 whileHover={{ rotate: 0, y: -5, scale: 1.02, zIndex: 30 }}
@@ -954,50 +949,90 @@ function Stack({ hoverHandlers }: { hoverHandlers: Hover }) {
 
 function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
   return (
-    <footer id="footer" className="relative mx-3 mb-28 overflow-hidden rounded-[28px] sm:mx-5">
-      <img
-        src={BACKDROP}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="relative px-6 py-14 text-[#00252e] sm:px-12">
-        <div className="relative overflow-hidden rounded-2xl border-2 border-white/60 bg-white/40 p-6 backdrop-blur-md sm:p-10">
-          <div className="flex flex-wrap gap-3">
-            <Chip label="UI/UX Design" chip="bg-[#f4eaf5]" accent="#ec68fd" rotate={-6} scale={0.72} />
-            <Chip label="Figma" chip="bg-[#f4f8e8]" accent="#93ba06" rotate={9} scale={0.72} />
+    <footer id="footer" className="relative mb-28 px-3 pt-10 sm:px-5">
+      <div className="relative overflow-hidden rounded-[24px]">
+        <img
+          src={BACKDROP}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/12" />
+
+        <div className="relative flex min-h-[420px] flex-col justify-between p-6 sm:p-9 lg:min-h-[500px]">
+          <div className="flex items-start justify-between gap-6">
+            <div className="flex gap-2">
+              {socialLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  aria-label={link.label}
+                  data-hoverable
+                  className="grid h-9 w-9 place-items-center rounded-full border border-white/40 bg-black/25 text-white backdrop-blur-md"
+                  whileHover={{ y: -3, scale: 1.08 }}
+                  {...hoverHandlers}
+                >
+                  <SocialIcon kind={link.icon} />
+                </motion.a>
+              ))}
+            </div>
+            <div className="max-w-[260px] text-right text-[15px] font-semibold leading-[1.35] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-[17px]">
+              {FOOTER_NOTE.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
           </div>
-          <h2 className="mt-8 max-w-[16ch] text-[32px] font-extrabold leading-[1.05] tracking-[-0.03em] sm:text-[44px]">
-            유저와 팀 모두가 만족하는 화면을 설계하겠습니다
-          </h2>
-          <motion.a
-            href="mailto:hello@example.com"
-            className="mt-8 inline-flex rounded-lg bg-white px-6 py-2.5 text-[15px] font-medium tracking-[-0.03em] text-[#1a1a1a] shadow-[0_6px_10px_rgba(0,0,0,0.15)]"
-            whileHover={{ y: -3, scale: 1.03 }}
-            {...hoverHandlers}
-          >
-            연락하기
-          </motion.a>
-        </div>
-        <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <p className="text-[18px] font-semibold tracking-[-0.03em]">{LOGO}</p>
-          <div className="flex flex-wrap gap-5 text-[14px] tracking-[-0.02em]">
-            <a href="#about" {...hoverHandlers}>
-              소개
-            </a>
-            <a href="#stack" {...hoverHandlers}>
-              스택
-            </a>
-            <a href="#project" {...hoverHandlers}>
-              프로젝트
-            </a>
-            <a href="#footer" {...hoverHandlers}>
-              연락
-            </a>
+
+          <div className="flex flex-col gap-6 pt-16 sm:flex-row sm:items-end sm:justify-between">
+            <div className="relative">
+              <Chip
+                label="UI/UX Design"
+                chip="bg-[#f4eaf5]"
+                accent="#ec68fd"
+                className="absolute -left-1 -top-6 hidden sm:flex"
+                rotate={-4}
+                scale={0.68}
+              />
+              <h2 className="text-[34px] font-extrabold uppercase leading-[0.95] tracking-[-0.01em] text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.35)] sm:text-[52px]">
+                {FOOTER_HEADLINE.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
+              <Chip
+                label="Figma"
+                chip="bg-[#f4f8e8]"
+                accent="#93ba06"
+                className="absolute -bottom-4 left-10 hidden sm:flex"
+                rotate={-4}
+                scale={0.68}
+              />
+            </div>
+            <motion.a
+              href={`mailto:${EMAIL}`}
+              data-hoverable
+              className="inline-flex w-fit rounded-xl bg-white px-6 py-3 text-[16px] font-medium tracking-[-0.01em] text-[#1a1a1a] shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
+              whileHover={{ y: -3, scale: 1.03 }}
+              {...hoverHandlers}
+            >
+              Let's chat
+            </motion.a>
           </div>
         </div>
-        <p className="mt-8 text-[13px] text-[#00252e]/60">
-          {NAME} · {ROLE}
+      </div>
+
+      <div className="mt-6 flex flex-col gap-4 px-1 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-[17px] font-semibold uppercase tracking-[0.02em]">
+          {LOGO}
+          <sup className="ml-0.5 text-[10px]">®</sup>
         </p>
+        <nav className="flex flex-wrap gap-6 text-[13px] font-semibold uppercase tracking-[0.06em] text-[#00252e]/70">
+          {footerLinks.map((link) => (
+            <a key={link.label} href={link.href} data-hoverable {...hoverHandlers}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
       </div>
     </footer>
   )
@@ -1150,6 +1185,46 @@ function Paperclip() {
         strokeLinecap="round"
         fill="none"
       />
+    </svg>
+  )
+}
+
+function SocialIcon({ kind }: { kind: 'instagram' | 'x' | 'phone' | 'mail' }) {
+  if (kind === 'instagram') {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" strokeWidth="1.7" />
+        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.7" />
+        <circle cx="17" cy="7" r="1.1" fill="currentColor" />
+      </svg>
+    )
+  }
+  if (kind === 'x') {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+        <path
+          d="M4 4l7.2 9.3L4.4 20h2.3l5.6-5.6L16.6 20H20l-7.4-9.6L19.4 4h-2.3l-5.2 5.2L8 4H4z"
+          fill="currentColor"
+        />
+      </svg>
+    )
+  }
+  if (kind === 'phone') {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
+        <path
+          d="M5.5 4h3l1.5 4-2 1.5a11 11 0 005.5 5.5l1.5-2 4 1.5v3a1.8 1.8 0 01-2 1.8C10.5 19 5 13.5 3.7 6a1.8 1.8 0 011.8-2z"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinejoin="round"
+        />
+      </svg>
+    )
+  }
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
+      <rect x="3" y="5.5" width="18" height="13" rx="2.5" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M4 7l8 6 8-6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
     </svg>
   )
 }
