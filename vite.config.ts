@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: './',
+  base: process.env.GITHUB_PAGES === 'true' ? '/design_portfolio/' : '/',
   plugins: [react(), tailwindcss()],
   server: {
     host: '0.0.0.0',

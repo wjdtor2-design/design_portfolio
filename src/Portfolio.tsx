@@ -21,17 +21,18 @@ const TAGLINE = ['— 화면만 그리지 않습니다.', '쓰는 사람이 헤�
 const FOOTER_HEADLINE = ["LET'S BUILD", 'SOMETHING', 'MEMORABLE']
 const FOOTER_NOTE_EN = 'I DESIGN THINGS THAT FIT RIGHT IN'
 const FOOTER_NOTE_KO = '저는 사용자 니즈에 맞춰 잘 스며들게 디자인합니다.'
-const PROFILE_IMAGE = '/profile.jpg'
-const PROJECT_VIDEO = '/plan-with.mp4'
-const BACKDROP = '/hills.jpg?v=2'
-const SHOT_MAIN = '/plan-with-main.jpg'
-const SHOT_AI = '/plan-with-ai.jpg'
+const pub = (file: string) => `${import.meta.env.BASE_URL}${file}`
+const PROFILE_IMAGE = pub('profile.jpg')
+const PROJECT_VIDEO = pub('plan-with.mp4')
+const BACKDROP = pub('hills.jpg')
+const SHOT_MAIN = pub('plan-with-main.jpg')
+const SHOT_AI = pub('plan-with-ai.jpg')
 const SHOTS = [
   SHOT_MAIN,
-  '/plan-with-tokyo.jpg',
-  '/plan-with-london.jpg',
-  '/plan-with-paris.jpg',
-  '/plan-with-seoul.jpg',
+  pub('plan-with-tokyo.jpg'),
+  pub('plan-with-london.jpg'),
+  pub('plan-with-paris.jpg'),
+  pub('plan-with-seoul.jpg'),
 ]
 
 const INTRO =
