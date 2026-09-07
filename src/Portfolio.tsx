@@ -18,8 +18,9 @@ const NAME = '곽지은 / Gwak Ji Eun'
 const ROLE = 'UI/UX DESIGNER'
 const HEADLINE = 'DESIGN SHAPED AROUND YOUR NEEDS'
 const TAGLINE = ['— 화면만 그리지 않습니다.', '쓰는 사람이 헤매지 않는', '흐름을 설계합니다']
-const FOOTER_HEADLINE = ['I DESIGN THINGS', 'THAT FIT RIGHT IN']
-const FOOTER_NOTE = ['저는 사용자 니즈에 맞춰', '잘 스며들게 디자인합니다.']
+const FOOTER_HEADLINE = ["LET'S BUILD", 'SOMETHING', 'MEMORABLE']
+const FOOTER_NOTE_EN = 'I DESIGN THINGS THAT FIT RIGHT IN'
+const FOOTER_NOTE_KO = '저는 사용자 니즈에 맞춰 잘 스며들게 디자인합니다.'
 const PROFILE_IMAGE = '/profile.jpg'
 const PROJECT_VIDEO = '/plan-with.mp4'
 const BACKDROP = '/hills.jpg'
@@ -943,8 +944,20 @@ function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
         />
         <div className="absolute inset-0 bg-black/12" />
 
-        <div className="relative flex min-h-[440px] flex-col justify-end p-6 sm:p-9 lg:min-h-[520px]">
-          <div className="relative inline-block max-w-[18ch]">
+        <div className="relative flex min-h-[440px] flex-col justify-between p-6 sm:p-9 lg:min-h-[520px]">
+          <div className="flex justify-end">
+            <div className="max-w-[320px] text-right text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+              <p className="text-[16px] font-semibold uppercase leading-[1.3] tracking-[-0.01em] sm:text-[18px]">
+                {FOOTER_NOTE_EN}
+              </p>
+              <p className="mt-2 text-[15px] font-medium leading-[1.45] text-white/90 sm:text-[16px]">
+                {FOOTER_NOTE_KO}
+              </p>
+            </div>
+          </div>
+
+          <div className="pt-20">
+            <div className="relative inline-block">
               <Chip
                 label="UI/UX Design"
                 chip="bg-[#f4eaf5]"
@@ -960,18 +973,16 @@ function Footer({ hoverHandlers }: { hoverHandlers: Hover }) {
                   </span>
                 ))}
               </h2>
-              <p className="mt-4 max-w-[28ch] text-[16px] font-medium leading-[1.45] text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-[18px]">
-                {FOOTER_NOTE.join(' ')}
-              </p>
               <Chip
                 label="Figma"
                 chip="bg-[#f4f8e8]"
                 accent="#93ba06"
-                className="absolute right-[-28px] top-[38%] hidden sm:flex"
+                className="absolute -bottom-5 right-[-18px] hidden sm:flex"
                 rotate={-4}
                 scale={0.85}
               />
             </div>
+          </div>
         </div>
       </div>
 
