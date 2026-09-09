@@ -366,8 +366,8 @@ function Hero({
           </div>
         </div>
 
-        <div className="mt-auto flex flex-col gap-10 pt-24 sm:flex-row sm:items-end sm:justify-between">
-          <div className="text-[17px] font-medium leading-[1.35] tracking-[-0.01em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-right sm:text-[19px]">
+        <div className="mt-auto flex flex-col gap-10 pt-8 sm:flex-row sm:items-end sm:justify-between sm:pt-24">
+          <div className="hidden text-[17px] font-medium leading-[1.35] tracking-[-0.01em] text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:block sm:text-right sm:text-[19px]">
             {TAGLINE.map((line) => (
               <p key={line}>{line}</p>
             ))}
