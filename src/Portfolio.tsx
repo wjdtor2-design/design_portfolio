@@ -857,8 +857,8 @@ function ProjectWindow({
       onMouseEnter={play}
       onMouseLeave={stop}
     >
-      <div className="absolute -top-6 right-8 z-10 rotate-[18deg]">
-        <Paperclip />
+      <div className="pointer-events-none absolute -top-6 left-1/2 z-10 -translate-x-1/2 rotate-[12deg]">
+        <Paperclip color="#f472b6" />
       </div>
       <div className="flex items-center gap-[5px] pb-2 pl-1">
         <span className="h-[7px] w-[7px] rounded-full bg-[#fd5d5c]" />
@@ -927,8 +927,8 @@ function PosterWindow({
       onMouseEnter={hoverHandlers.onMouseEnter}
       onMouseLeave={hoverHandlers.onMouseLeave}
     >
-      <div className="absolute -top-6 left-10 z-10 -rotate-[14deg]">
-        <Paperclip />
+      <div className="pointer-events-none absolute -top-6 left-1/2 z-10 -translate-x-1/2 -rotate-[10deg]">
+        <Paperclip color="#34c75a" />
       </div>
       <div className="flex items-center gap-[5px] pb-2 pl-1">
         <span className="h-[7px] w-[7px] rounded-full bg-[#fd5d5c]" />
@@ -1279,12 +1279,12 @@ function FoldCorner() {
   )
 }
 
-function Paperclip() {
+function Paperclip({ color }: { color: string }) {
   return (
     <svg width="24" height="38" viewBox="0 0 30 48" fill="none" aria-hidden>
       <path
         d="M 0 16.005 L 14.5 43.775 C 16.602 47.799 21.568 49.358 25.593 47.257 C 29.618 45.155 31.177 40.189 29.075 36.164 L 11.495 2.496 C 10.308 0.222 7.502 -0.659 5.227 0.528 C 2.991 1.696 2.096 4.436 3.211 6.699 L 5.27 10.878"
-        stroke="#3e4cff"
+        stroke={color}
         strokeWidth="3"
         strokeLinecap="round"
         fill="none"
