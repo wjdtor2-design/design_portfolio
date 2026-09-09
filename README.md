@@ -6,7 +6,7 @@ UI/UX 디자이너 포트폴리오. React, Tailwind CSS, Framer Motion으로 스
 
 - 자기소개: 치과 10년 근무 후 부트캠프에서 UI/UX로 전향
 - 기술 스택: Figma (Auto Layout, Component, Prototyping), Git, GitHub, Notion
-- 프로젝트: Plan & With — AI 여행 일정 공유 플랫폼 (팀, 2026.07–26.08, Figma)
+- 프로젝트: Plan & With (UI/UX), Feel the Time (그래픽 포스터)
 
 ## 내용 수정하기
 
@@ -23,6 +23,7 @@ UI/UX 디자이너 포트폴리오. React, Tailwind CSS, Framer Motion으로 스
 | `PROJECT_VIDEO` | 프로젝트 카드 | 호버 재생 영상 경로 |
 | `PROJECT_LINK` | 케이스 스터디 Preview Link | 프로젝트 링크 |
 | `SHOT_MAIN`, `SHOT_AI` | 케이스 스터디 / 카드 스택 | Plan & With 화면 캡쳐 |
+| `POSTER` | Feel the Time | `public/feel-the-time.jpg` |
 
 ## 프로필 사진 넣기
 
@@ -47,11 +48,11 @@ cp "KakaoTalk_20260902_093320910.mp4" public/plan-with.mp4
 
 ## 케이스 스터디
 
-히어로 우측 하단 카드 덱의 첫 카드(`PLAN & WITH`)와 프로젝트 카드를 누르면
-브라우저 창 모양 케이스 스터디가 열립니다. 주요 수행 내용 및 성과는 `works` 배열에서
-관리하며 케이스 스터디 안에 표시됩니다.
+히어로 우측 하단 카드 덱에서 `PLAN & WITH` 또는 `FEEL THE TIME`을 누르면
+브라우저 창 모양 케이스 스터디가 열립니다. Plan & With의 수행 내용은 `works` 배열에서
+관리합니다. 프로젝트 섹션에도 같은 두 작업이 카드로 나란히 있습니다.
 
-덱의 두 번째·세 번째 카드는 `caseCards` 의 `ready: false` 로 "COMING SOON · 준비중"
+덱의 세 번째 카드는 `caseCards` 의 `ready: false` 로 "COMING SOON · 준비중"
 상태이며 클릭되지 않습니다. 새 프로젝트가 생기면 `ready: true` 로 바꾸고 제목을 채우면 됩니다.
 
 ## 폰트 / 배경

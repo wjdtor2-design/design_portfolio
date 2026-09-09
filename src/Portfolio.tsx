@@ -27,6 +27,7 @@ const PROJECT_VIDEO = pub('plan-with.mp4')
 const BACKDROP = pub('hills.jpg')
 const SHOT_MAIN = pub('plan-with-main.jpg')
 const SHOT_AI = pub('plan-with-ai.jpg')
+const POSTER = pub('feel-the-time.jpg')
 const SHOTS = [
   SHOT_MAIN,
   pub('plan-with-tokyo.jpg'),
@@ -120,14 +121,16 @@ const caseCards = [
     year: '2026',
     tint: 'bg-[#f4e7a1]/60',
     ready: true,
+    thumb: 'plan' as const,
   },
   {
-    id: 'next-1',
-    title: 'NEXT PROJECT',
-    tool: 'FIGMA',
+    id: 'feel-the-time',
+    title: 'FEEL THE TIME',
+    tool: 'GRAPHIC',
     year: '2026',
-    tint: 'bg-[#d3e8c6]/55',
-    ready: false,
+    tint: 'bg-[#e8c4a4]/55',
+    ready: true,
+    thumb: 'poster' as const,
   },
   {
     id: 'next-2',
@@ -136,6 +139,7 @@ const caseCards = [
     year: '2026',
     tint: 'bg-white/40',
     ready: false,
+    thumb: 'none' as const,
   },
 ]
 
@@ -249,7 +253,7 @@ export default function Portfolio() {
       <AnimatePresence>
         {caseAnchor && (
           <CaseStudy
-            anchor={caseAnchor}
+            projectId={caseAnchor}
             hoverHandlers={hoverHandlers}
             onClose={() => setCaseAnchor(null)}
           />
@@ -430,7 +434,7 @@ function CaseStack({
           type="button"
           data-hoverable
           disabled={!card.ready}
-          onClick={() => card.ready && onOpenCase('case-overview')}
+          onClick={() => card.ready && onOpenCase(card.id)}
           className={`absolute bottom-0 left-0 flex w-full origin-bottom items-center gap-3 rounded-xl border border-white/50 px-3.5 text-left shadow-[0_6px_18px_rgba(0,0,0,0.18)] backdrop-blur-[24px] ${card.tint} ${
             card.ready ? '' : 'cursor-default'
           }`}
@@ -444,7 +448,7 @@ function CaseStack({
         >
           {card.ready ? (
             <img
-              src={SHOT_MAIN}
+              src={card.thumb === 'poster' ? POSTER : SHOT_MAIN}
               alt=""
               className="h-11 w-14 shrink-0 rounded-md object-cover"
             />
@@ -481,15 +485,21 @@ function CaseStack({
 }
 
 function CaseStudy({
-  anchor,
+  projectId,
   hoverHandlers,
   onClose,
 }: {
-  anchor: string
+  projectId: string
   hoverHandlers: Hover
   onClose: () => void
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const isPoster = projectId === 'feel-the-time'
+  const scrollId = isPoster
+    ? 'poster-overview'
+    : projectId.startsWith('case-')
+      ? projectId
+      : 'case-overview'
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -504,14 +514,14 @@ function CaseStudy({
   }, [onClose])
 
   useEffect(() => {
-    const target = scrollRef.current?.querySelector(`#${anchor}`)
+    const target = scrollRef.current?.querySelector(`#${scrollId}`)
     if (!target) return
     const timer = window.setTimeout(
       () => target.scrollIntoView({ behavior: 'smooth', block: 'start' }),
       420,
     )
     return () => window.clearTimeout(timer)
-  }, [anchor])
+  }, [scrollId])
 
   return (
     <motion.div
@@ -550,7 +560,9 @@ function CaseStudy({
               <circle cx="7" cy="7" r="4.6" fill="none" stroke="#9b9b9b" strokeWidth="1.6" />
               <path d="M10.6 10.6 L14 14" stroke="#9b9b9b" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
-            <span className="text-[13px] text-white/70">Portfolio / Case Study</span>
+            <span className="text-[13px] text-white/70">
+              Portfolio / {isPoster ? 'Feel the Time' : 'Plan & With'}
+            </span>
           </div>
           <span className="text-[15px] text-white/50">⟳</span>
         </div>
@@ -559,6 +571,71 @@ function CaseStudy({
           ref={scrollRef}
           className="overflow-y-auto rounded-[13px] bg-white px-5 py-6 sm:px-8 sm:py-8"
         >
+          {isPoster ? (
+            <>
+              <section id="poster-overview" className="scroll-mt-4">
+                <div className="overflow-hidden rounded-2xl bg-[#2a1c12]">
+                  <img
+                    src={POSTER}
+                    alt="Feel the Time 포스터"
+                    className="mx-auto max-h-[70vh] w-auto object-contain"
+                  />
+                </div>
+                <h2 className="mt-6 text-[30px] font-extrabold tracking-[-0.02em] sm:text-[38px]">
+                  Feel the Time
+                </h2>
+                <p className="mt-3 max-w-[62ch] text-[16px] leading-[1.6] text-[#00252e]/80">
+                  시간이 흘러가는 감각을 한 장의 포스터에 담은 그래픽 작업입니다. 빈티지 CRT와 타일
+                  벽 위로 큰 타이포그래피를 겹쳐, “Feel the time flowing through your soul”이라는
+                  문장이 분위기 자체로 읽히게 했습니다.
+                </p>
+                <dl className="mt-8 grid gap-6 sm:grid-cols-2">
+                  {[
+                    ['Client :', '개인 작업'],
+                    ['Years :', '2026'],
+                    ['Project Type :', 'Graphic Design · Poster'],
+                    ['Tool Used :', 'Typography, Photo collage'],
+                  ].map(([label, value]) => (
+                    <div key={label}>
+                      <dt className="text-[15px] text-[#00252e]/50">{label}</dt>
+                      <dd className="mt-1 text-[17px] font-semibold tracking-[-0.01em]">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+              <section id="poster-concept" className="mt-10 scroll-mt-4">
+                <h3 className="text-[22px] font-extrabold tracking-[-0.02em] sm:text-[26px]">
+                  콘셉트
+                </h3>
+                <p className="mt-4 max-w-[62ch] text-[16px] leading-[1.6] text-[#00252e]/80">
+                  낡은 브라운관 TV와 격자 타일은 시간이 멈춘 방을 떠올리게 합니다. 그 위에 큰 흰색
+                  글자를 겹쳐 사진이 타이포그래피 사이로 비치게 했고, 종이의 얼룩과 그레인은 디지털이
+                  아니라 벽에 붙인 인쇄물처럼 보이게 하는 장치입니다.
+                </p>
+              </section>
+              <section id="poster-type" className="mt-10 scroll-mt-4">
+                <h3 className="text-[22px] font-extrabold tracking-[-0.02em] sm:text-[26px]">
+                  타이포그래피
+                </h3>
+                <p className="mt-4 max-w-[62ch] text-[16px] leading-[1.6] text-[#00252e]/80">
+                  왼쪽 위에는 작은 산세리프로 문장을 심고, 화면 대부분은 과장된 레터폼이 차지합니다.
+                  글자가 읽히기보다 먼저 리듬과 여백으로 느껴지도록 스케일을 키웠습니다.
+                </p>
+                <div className="mt-8 flex justify-end">
+                  <button
+                    type="button"
+                    data-hoverable
+                    onClick={onClose}
+                    className="inline-flex rounded-lg bg-[#00252e] px-5 py-2.5 text-[15px] font-medium text-white"
+                    {...hoverHandlers}
+                  >
+                    닫기
+                  </button>
+                </div>
+              </section>
+            </>
+          ) : (
+            <>
           <section id="case-overview" className="scroll-mt-4">
             <img
               src={SHOT_MAIN}
@@ -635,6 +712,8 @@ function CaseStudy({
               </button>
             </div>
           </section>
+            </>
+          )}
         </div>
       </motion.article>
     </motion.div>
@@ -718,8 +797,9 @@ function Projects({
           </h2>
         </div>
 
-        <div className="mx-auto max-w-[520px]">
+        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2 lg:items-start">
           <ProjectWindow hoverHandlers={hoverHandlers} onOpenCase={onOpenCase} />
+          <PosterWindow hoverHandlers={hoverHandlers} onOpenCase={onOpenCase} />
         </div>
 
         <p className="mt-12 text-center text-[15px] text-[#00252e]/55">
@@ -761,9 +841,9 @@ function ProjectWindow({
       data-hoverable
       role="button"
       tabIndex={0}
-      onClick={() => onOpenCase('case-overview')}
+      onClick={() => onOpenCase('plan-with')}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onOpenCase('case-overview')
+        if (e.key === 'Enter' || e.key === ' ') onOpenCase('plan-with')
       }}
       className="relative rounded-[12px] border border-black/5 bg-white p-2.5 shadow-[0_10px_28px_rgba(0,0,0,0.14)]"
       initial={{ rotate: -3.2 }}
@@ -812,6 +892,61 @@ function ProjectWindow({
         <div className="flex items-baseline gap-3 text-[11px] text-[#00252e]/55">
           <span>UI/UX Design</span>
           <span>Figma</span>
+          <span>2026</span>
+        </div>
+      </div>
+    </motion.article>
+  )
+}
+
+function PosterWindow({
+  hoverHandlers,
+  onOpenCase,
+}: {
+  hoverHandlers: Hover
+  onOpenCase: (anchor: string) => void
+}) {
+  return (
+    <motion.article
+      data-hoverable
+      role="button"
+      tabIndex={0}
+      onClick={() => onOpenCase('feel-the-time')}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onOpenCase('feel-the-time')
+      }}
+      className="relative rounded-[12px] border border-black/5 bg-white p-2.5 shadow-[0_10px_28px_rgba(0,0,0,0.14)]"
+      initial={{ rotate: 2.6 }}
+      whileHover={{
+        rotate: 0,
+        y: -18,
+        scale: 1.03,
+        transition: { type: 'spring', stiffness: 480, damping: 22 },
+      }}
+      style={{ transformPerspective: 800 }}
+      onMouseEnter={hoverHandlers.onMouseEnter}
+      onMouseLeave={hoverHandlers.onMouseLeave}
+    >
+      <div className="absolute -top-6 left-10 z-10 -rotate-[14deg]">
+        <Paperclip />
+      </div>
+      <div className="flex items-center gap-[5px] pb-2 pl-1">
+        <span className="h-[7px] w-[7px] rounded-full bg-[#fd5d5c]" />
+        <span className="h-[7px] w-[7px] rounded-full bg-[#fac900]" />
+        <span className="h-[7px] w-[7px] rounded-full bg-[#34c75a]" />
+      </div>
+      <div className="relative aspect-[16/9] overflow-hidden rounded-[6px] bg-[#2a1c12]">
+        <img
+          src={POSTER}
+          alt="Feel the Time 포스터"
+          className="absolute inset-0 h-full w-full object-contain"
+        />
+      </div>
+      <div className="flex items-baseline justify-between gap-3 px-1 pt-2.5">
+        <h3 className="text-[17px] font-bold tracking-[-0.01em]">Feel the Time</h3>
+        <div className="flex items-baseline gap-3 text-[11px] text-[#00252e]/55">
+          <span>Graphic</span>
+          <span>Poster</span>
           <span>2026</span>
         </div>
       </div>
